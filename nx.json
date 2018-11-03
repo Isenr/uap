@@ -13,6 +13,15 @@
     },
     "root-core-e2e": {
       "tags": []
+    },
+    "products-models": {
+      "tags": []
+    },
+    "products-services": {
+      "tags": []
+    },
+    "products-components": {
+      "tags": []
     }
   }
 }

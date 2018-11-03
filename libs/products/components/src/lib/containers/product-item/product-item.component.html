@@ -1,0 +1,10 @@
+<div class="product-item">
+    <uap-pizza-form [pizza]="pizza"
+                    [toppings]="toppings"
+                    (selected)="onSelect($event)"
+                    (create)="onCreate($event)"
+                    (update)="onUpdate($event)"
+                    (remove)="onRemove($event)">
+        <uap-pizza-display [pizza]="visualise"></uap-pizza-display>
+    </uap-pizza-form>
+</div>

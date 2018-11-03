@@ -10,7 +10,12 @@
         "typeRoots": ["node_modules/@types"],
         "lib": ["es2017", "dom"],
         "baseUrl": ".",
-        "paths": {}
+        "paths": {
+            "@uap/products": ["libs/products/src/index.ts"],
+            "@uap/products/models": ["libs/products/models/src/index.ts"],
+            "@uap/products/services": ["libs/products/services/src/index.ts"],
+            "@uap/products/components": ["libs/products/components/src/index.ts"]
+        }
     },
     "exclude": ["node_modules", "tmp"]
 }
