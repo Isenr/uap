@@ -9,7 +9,7 @@
         <div *ngIf="!((pizzas)?.length)">
             No pizzas, add one to get started.
         </div>
-        <uap-pizza-item *ngFor="let pizza of (pizzas)"
+        <uap-pizza-item *ngFor="let pizza of (productsFacade.allPizzas$ | async)"
                         [pizza]="pizza">
         </uap-pizza-item>
     </div>

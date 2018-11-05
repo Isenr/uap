@@ -17,22 +17,22 @@ import { Topping } from '@uap/products/models';
 })
 export class PizzaToppingsComponent implements ControlValueAccessor {
     @Input()
-    public toppings: Array<Topping> = [];
+    public toppings: Topping[] = [];
 
-    public value: Array<Topping> = [];
+    public value: Topping[] = [];
 
-    private onTouch: <T = any, U = any>(...args: Array<U>) => T;
-    private onModelChange: <T = any, U = any>(...args: Array<U>) => T;
+    private onTouch: <T = any, U = any>(...args: U[]) => T;
+    private onModelChange: <T = any, U = any>(...args: U[]) => T;
 
-    public registerOnChange(fn: <T = any, U = any>(...args: Array<U>) => T) {
+    public registerOnChange(fn: <T = any, U = any>(...args: U[]) => T) {
         this.onModelChange = fn;
     }
 
-    public registerOnTouched(fn: <T = any, U = any>(...args: Array<U>) => T) {
+    public registerOnTouched(fn: <T = any, U = any>(...args: U[]) => T) {
         this.onTouch = fn;
     }
 
-    public writeValue(value: Array<Topping>) {
+    public writeValue(value: Topping[]) {
         this.value = value;
     }
 

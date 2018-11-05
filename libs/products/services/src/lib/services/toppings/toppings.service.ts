@@ -12,7 +12,7 @@ export class ToppingsService {
 
     public getToppings() {
         return this.http
-            .get<Array<Topping>>(this.apiUrl)
+            .get<Topping[]>(this.apiUrl)
             .pipe(catchError((error: any) => throwError(error.json())));
     }
 }

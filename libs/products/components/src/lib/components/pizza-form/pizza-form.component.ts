@@ -15,10 +15,10 @@ export class PizzaFormComponent implements OnChanges {
     public pizza: Pizza;
 
     @Input()
-    public toppings: Array<Topping>;
+    public toppings: Topping[];
 
     @Output()
-    public selected = new EventEmitter<Array<number>>();
+    public selected = new EventEmitter<number[]>();
 
     @Output()
     public create = new EventEmitter<Pizza>();

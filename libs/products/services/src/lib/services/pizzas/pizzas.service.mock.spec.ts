@@ -11,7 +11,7 @@ export const PizzasServiceMock: Pick<PizzasService, keyof PizzasService> = {
         });
     },
     getPizzas() {
-        return observableOf<Array<Pizza>>([]);
+        return observableOf<Pizza[]>([]);
     },
     removePizza(payload: Pizza) {
         return observableOf(payload);

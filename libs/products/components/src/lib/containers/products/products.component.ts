@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Pizza } from '@uap/products/models';
-import { PizzasService } from '@uap/products/services';
+
+import { ProductsFacade } from '../../+state/products.facade';
 
 @Component({
     selector: 'uap-products',
@@ -8,13 +8,9 @@ import { PizzasService } from '@uap/products/services';
     templateUrl: 'products.component.html',
 })
 export class ProductsComponent implements OnInit {
-    public pizzas: Array<Pizza>;
-
-    constructor(private pizzaService: PizzasService) {}
+    constructor(public productsFacade: ProductsFacade) {}
 
     public ngOnInit() {
-        this.pizzaService.getPizzas().subscribe(pizzas => {
-            this.pizzas = pizzas;
-        });
+        this.productsFacade.loadAllPizzas();
     }
 }

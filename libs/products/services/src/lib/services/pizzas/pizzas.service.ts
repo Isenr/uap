@@ -12,7 +12,7 @@ export class PizzasService {
 
     public getPizzas() {
         return this.http
-            .get<Array<Pizza>>(this.apiUrl)
+            .get<Pizza[]>(this.apiUrl)
             .pipe(catchError((error: any) => throwError(error.json())));
     }
 
