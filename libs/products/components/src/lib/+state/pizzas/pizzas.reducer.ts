@@ -14,6 +14,10 @@ export function pizzasReducer(
 ): PizzasState {
     switch (action.type) {
         case PizzasActionTypes.PizzaCreate: {
+            action.payload.id =
+                state.list
+                    .map(({ id }) => Number.parseInt(String(id), 10))
+                    .find((aId, i, arr) => !arr.some(bId => bId > aId)) + 1;
             state = {
                 ...state,
                 list: [...state.list, action.payload],

@@ -73,7 +73,7 @@ describe('ProductsComponentsFacade', () => {
                 expect(list.length).toBe(0);
                 expect(isLoaded).toBe(false);
 
-                facade.loadAllPizzas();
+                facade.loadPizzas();
 
                 list = await readFirst(facade.allPizzas$);
                 isLoaded = await readFirst(facade.pizzasLoaded$);
@@ -98,7 +98,7 @@ describe('ProductsComponentsFacade', () => {
                 expect(list.length).toBe(0);
                 expect(isLoaded).toBe(false);
 
-                facade.loadAllToppings();
+                facade.loadToppings();
 
                 list = await readFirst(facade.allToppings$);
                 isLoaded = await readFirst(facade.toppingsLoaded$);

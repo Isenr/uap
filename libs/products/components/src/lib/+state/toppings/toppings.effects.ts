@@ -9,11 +9,12 @@ import {
     ToppingsLoaded,
     ToppingsLoadError,
 } from './toppings.actions';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable()
 export class ToppingsEffects {
     @Effect()
-    public loadToppings$ = this.dataPersistence.fetch(ToppingsActionTypes.ToppingsLoad, {
+    public loadToppings$: Observable<ToppingsLoaded> = this.dataPersistence.fetch(ToppingsActionTypes.ToppingsLoad, {
         run: (action: ToppingsLoad, state: ProductsPartialState) => {
             if (state[PRODUCTS_FEATURE_KEY].toppings.loaded) {
                 return new ToppingsLoaded(state[PRODUCTS_FEATURE_KEY].toppings.list);

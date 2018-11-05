@@ -4,11 +4,12 @@ import { DataPersistence } from '@nrwl/nx';
 
 import { PRODUCTS_FEATURE_KEY, ProductsPartialState } from '../products.reducer';
 import { PizzasActionTypes, PizzasLoad, PizzasLoaded, PizzasLoadError } from './pizzas.actions';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PizzasEffects {
     @Effect()
-    public loadPizzas$ = this.dataPersistence.fetch(PizzasActionTypes.PizzasLoad, {
+    public loadPizzas$: Observable<PizzasLoaded> = this.dataPersistence.fetch(PizzasActionTypes.PizzasLoad, {
         run: (action: PizzasLoad, state: ProductsPartialState) => {
             if (state[PRODUCTS_FEATURE_KEY].pizzas.loaded) {
                 return new PizzasLoaded(state[PRODUCTS_FEATURE_KEY].pizzas.list);

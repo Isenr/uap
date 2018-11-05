@@ -49,7 +49,7 @@ export class ProductsFacade {
         this.store.dispatch(new PizzaCreate(payload));
     }
 
-    public loadAllPizzas() {
+    public loadPizzas() {
         this.store.dispatch(new PizzasLoad());
     }
 
@@ -67,7 +67,7 @@ export class ProductsFacade {
     // #endregion pizzas
 
     // #region toppings
-    public loadAllToppings() {
+    public loadToppings() {
         this.store.dispatch(new ToppingsLoad());
     }
 

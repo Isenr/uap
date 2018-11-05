@@ -20,7 +20,7 @@ const getSelectedId = createSelector(getPizzasState, (state: PizzasState) => sta
 
 const getSelected = createSelector(getAll, getSelectedId, (entities, id) => {
     const result = entities.find(it => String(it['id']) === String(id));
-    return result ? Object.assign({}, result) : {};
+    return result ? Object.assign({}, result) : id ? {} : undefined;
 });
 
 export const pizzasQuery = {
