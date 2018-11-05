@@ -14,6 +14,7 @@
         "build": "npx ng build",
         "dep-graph": "npx nx dep-graph",
         "e2e": "npx ng e2e",
+        "fix": "npx nx lint --fix && npx ng lint --fix",
         "format": "npx nx format:write",
         "format:write": "npx nx format:write",
         "format:check": "npx nx format:check",
@@ -45,7 +46,8 @@
         "@nrwl/nx": "^7.0.0",
         "core-js": "^2.5.7",
         "rxjs": "^6.3.3",
-        "zone.js": "^0.8.26"
+        "zone.js": "^0.8.26",
+        "@ngrx/entity": "6.1.0"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^0.10.4",
@@ -67,12 +69,12 @@
         "karma-coverage-istanbul-reporter": "^2.0.4",
         "karma-jasmine": "^1.1.2",
         "karma-jasmine-html-reporter": "^1.4.0",
-        "ngrx-store-freeze": "^0.2.4",
         "prettier": "^1.14.3",
         "protractor": "^5.4.1",
         "ts-node": "^7.0.1",
         "tslint": "^5.11.0",
         "tslint-eslint-rules": "^5.4.0",
-        "typescript": "^3.1.6"
+        "typescript": "^3.1.6",
+        "ngrx-store-freeze": "0.2.4"
     }
 }

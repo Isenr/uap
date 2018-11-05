@@ -11,7 +11,7 @@ import { PizzasService, ToppingsService } from '@uap/products/services';
 export class ProductItemComponent implements OnInit {
     public pizza: Pizza;
     public visualise: Pizza;
-    public toppings: Array<Topping>;
+    public toppings: Topping[];
 
     constructor(
         private pizzaService: PizzasService,
@@ -37,7 +37,7 @@ export class ProductItemComponent implements OnInit {
         });
     }
 
-    public onSelect(event: Array<number>) {
+    public onSelect(event: Array<string | number>) {
         let toppings;
         if (this.toppings && this.toppings.length) {
             toppings = event.map(id => this.toppings.find(topping => topping.id === id));

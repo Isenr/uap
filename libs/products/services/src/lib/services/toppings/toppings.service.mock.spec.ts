@@ -5,6 +5,6 @@ import { ToppingsService } from './toppings.service';
 
 export const ToppingsServiceMock: Pick<ToppingsService, keyof ToppingsService> = {
     getToppings() {
-        return observableOf<Array<Topping>>([]);
+        return observableOf<Topping[]>([]);
     },
 };

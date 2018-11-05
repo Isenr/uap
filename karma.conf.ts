@@ -7,7 +7,7 @@ import { join } from 'path';
 export interface CoverageIstanbulReporterConfig {
     dir: any;
     fixWebpackSourcePaths: boolean;
-    reports: Array<string>;
+    reports: string[];
 }
 
 export type ConfigOptionsType = Pick<
