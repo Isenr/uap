@@ -21,7 +21,7 @@ export class ProductItemComponent implements OnInit, OnDestroy {
     ) {}
 
     public ngOnInit() {
-        this.productsFacade.loadToppings();
+        this.productsFacade.loadAll();
 
         this.subscription = merge(
             this.route.params.pipe(
@@ -29,9 +29,10 @@ export class ProductItemComponent implements OnInit, OnDestroy {
                     this.productsFacade.selectPizza(id);
                 })
             ),
-            this.productsFacade.selectedPizza$.pipe(
-                tap(pizza => {
-                    this.router.navigate([`/products${pizza ? '/' + pizza.id : ''}`]);
+            this.productsFacade.selectedPizzaId$.pipe(
+                tap(id => {
+                    if (this.route.snapshot.params.id === id) return;
+                    this.router.navigate([`/products${id ? '/' + id : ''}`]);
                 })
             )
         ).subscribe();

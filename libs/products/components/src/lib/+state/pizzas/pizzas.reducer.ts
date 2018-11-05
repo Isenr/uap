@@ -1,11 +1,15 @@
-import { entityListInitialState, EntityListState, Pizza, Topping } from '@uap/products/models';
+import { entityListInitialState, EntityListState, Pizza } from '@uap/products/models';
+import { dictionaryToArray, getNextId, removeFromDictionary } from '@uap/utils';
 
 import { PizzasAction, PizzasActionTypes } from './pizzas.actions';
 
-export interface PizzasState extends EntityListState<Pizza> {}
+export interface PizzasState extends EntityListState<Pizza> {
+    data: { [K in string | number]: Pizza };
+}
 
 export const initialState: PizzasState = {
     ...entityListInitialState,
+    data: {},
 };
 
 export function pizzasReducer(
@@ -14,39 +18,51 @@ export function pizzasReducer(
 ): PizzasState {
     switch (action.type) {
         case PizzasActionTypes.PizzaCreate: {
-            action.payload.id =
-                state.list
-                    .map(({ id }) => Number.parseInt(String(id), 10))
-                    .find((aId, i, arr) => !arr.some(bId => bId > aId)) + 1;
+            action.payload.id = getNextId(state.data);
+            const data = {
+                ...state.data,
+                [action.payload.id]: action.payload,
+            };
             state = {
                 ...state,
-                list: [...state.list, action.payload],
+                data,
+                list: dictionaryToArray(data),
                 selectedId: action.payload.id,
             };
             break;
         }
         case PizzasActionTypes.PizzaRemove: {
+            const data = removeFromDictionary(state.data, action.payload.id);
             state = {
                 ...state,
-                list: state.list.filter(pizza => pizza.id !== action.payload.id),
+                data,
+                list: dictionaryToArray(data),
                 selectedId: undefined,
             };
             break;
         }
         case PizzasActionTypes.PizzaUpdate: {
+            const data = {
+                ...state.data,
+                [action.payload.id]: action.payload,
+            };
             state = {
                 ...state,
-                list: state.list.map(
-                    pizza => (pizza.id === action.payload.id ? action.payload : pizza)
-                ),
+                data,
+                list: dictionaryToArray(data),
                 selectedId: undefined,
             };
             break;
         }
         case PizzasActionTypes.PizzasLoaded: {
+            const data = {
+                ...state.data,
+                ...action.payload,
+            };
             state = {
                 ...state,
-                list: action.payload,
+                data,
+                list: dictionaryToArray(data),
                 loaded: true,
             };
             break;

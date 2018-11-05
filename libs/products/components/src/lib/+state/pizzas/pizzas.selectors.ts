@@ -1,31 +1,38 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
+import { Pizza } from '@uap/products/models';
+import { dictionaryToArray } from '@uap/utils';
 
 import { PRODUCTS_FEATURE_KEY, ProductsState } from '../products.reducer';
 import { PizzasState } from './pizzas.reducer';
 
 // Lookup the 'Pizzas' feature state managed by NgRx
-const getState = createFeatureSelector<ProductsState>(PRODUCTS_FEATURE_KEY);
+const getState = createSelector(
+    createFeatureSelector<ProductsState>(PRODUCTS_FEATURE_KEY),
+    (state: ProductsState) => state.pizzas
+);
 
-const getPizzasState = createSelector(getState, (state: ProductsState) => state.pizzas);
+const getLoaded = createSelector(getState, (state: PizzasState) => state.loaded);
 
-const getLoaded = createSelector(getPizzasState, (state: PizzasState) => state.loaded);
+const getError = createSelector(getState, (state: PizzasState) => state.error);
 
-const getError = createSelector(getPizzasState, (state: PizzasState) => state.error);
+const getAll = createSelector(getState, getLoaded, (state: PizzasState, isLoaded) => {
+    return isLoaded ? state.data : {};
+});
 
-const getAll = createSelector(getPizzasState, getLoaded, (state: PizzasState, isLoaded) => {
+const getList = createSelector(getState, getLoaded, (state: PizzasState, isLoaded) => {
     return isLoaded ? state.list : [];
 });
 
-const getSelectedId = createSelector(getPizzasState, (state: PizzasState) => state.selectedId);
+const getSelectedId = createSelector(getState, (state: PizzasState) => state.selectedId);
 
 const getSelected = createSelector(getAll, getSelectedId, (entities, id) => {
-    const result = entities.find(it => String(it['id']) === String(id));
-    return result ? Object.assign({}, result) : id ? {} : undefined;
+    return entities[id] || (id === 'new' ? ({} as Pizza) : undefined);
 });
 
 export const pizzasQuery = {
     getAll,
     getError,
+    getList,
     getLoaded,
     getSelected,
     getSelectedId,

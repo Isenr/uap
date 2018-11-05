@@ -6,6 +6,8 @@ import { initialState, pizzasReducer, PizzasState } from './pizzas.reducer';
 describe('Pizzas Reducer', () => {
     const getEntityId = it => it['id'];
     let createEntity;
+    const idA = 'PRODUCT-AAA';
+    const idZ = 'PRODUCT-zzz';
 
     beforeEach(() => {
         createEntity = (id: string, name = ''): Entity => ({
@@ -16,17 +18,17 @@ describe('Pizzas Reducer', () => {
 
     describe('valid Pizzas actions ', () => {
         it('should return set the list of known Pizzas', () => {
-            const productsComponents = [
-                createEntity('PRODUCT-AAA'),
-                createEntity('PRODUCT-zzz'),
-            ];
-            const action = new PizzasLoaded(productsComponents);
+            const entities = {
+                [idA]: createEntity(idA),
+                [idZ]: createEntity(idZ),
+            };
+            const action = new PizzasLoaded(entities);
             const result: PizzasState = pizzasReducer(initialState, action);
-            const selId: string = getEntityId(result.list[1]);
+            const selId: string = getEntityId(result.list[idZ]);
 
             expect(result.loaded).toBe(true);
-            expect(result.list.length).toBe(2);
-            expect(selId).toBe('PRODUCT-zzz');
+            expect(Reflect.ownKeys(result.list).length).toBe(2);
+            expect(selId).toBe(idZ);
         });
     });
 

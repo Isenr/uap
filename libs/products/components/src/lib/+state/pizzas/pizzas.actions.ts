@@ -42,7 +42,7 @@ export class PizzasLoadError implements Action {
 
 export class PizzasLoaded implements Action {
     public readonly type = PizzasActionTypes.PizzasLoaded;
-    constructor(public payload: Pizza[]) {}
+    constructor(public payload: { [K in string | number]: Pizza }) {}
 }
 
 export type PizzasAction =

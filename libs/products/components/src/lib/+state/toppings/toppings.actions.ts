@@ -19,7 +19,7 @@ export class ToppingsLoadError implements Action {
 
 export class ToppingsLoaded implements Action {
     public readonly type = ToppingsActionTypes.ToppingsLoaded;
-    constructor(public payload: Topping[]) {}
+    constructor(public payload: { [K in string | number]: Topping }) {}
 }
 
 export class ToppingsSelect implements Action {

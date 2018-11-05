@@ -20,7 +20,7 @@ export class ProductsFacade {
     // #region pizzas
     public pizzasLoaded$ = this.store.pipe(select(pizzasQuery.getLoaded));
 
-    public allPizzas$ = this.store.pipe(select(pizzasQuery.getAll));
+    public allPizzas$ = this.store.pipe(select(pizzasQuery.getList));
 
     public selectedPizza$ = this.store.pipe(select(pizzasQuery.getSelected));
 
@@ -30,7 +30,7 @@ export class ProductsFacade {
     // #region toppings
     public toppingsLoaded$ = this.store.pipe(select(toppingsQuery.getLoaded));
 
-    public allToppings$ = this.store.pipe(select(toppingsQuery.getAll));
+    public allToppings$ = this.store.pipe(select(toppingsQuery.getList));
 
     public selectedToppings$ = this.store.pipe(select(toppingsQuery.getSelected));
     // #endregion toppings

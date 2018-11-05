@@ -6,6 +6,10 @@ describe('ProductsComponents Selectors', () => {
     const ERROR_MSG = 'No Error Available';
     const getEntityId = it => it['id'];
 
+    const idA = 'PRODUCT-AAA';
+    const idB = 'PRODUCT-BBB';
+    const idC = 'PRODUCT-CCC';
+
     let storeState;
 
     beforeEach(() => {
@@ -17,13 +21,13 @@ describe('ProductsComponents Selectors', () => {
             productsComponents: {
                 pizzas: {
                     error: ERROR_MSG,
-                    list: [
-                        createEntity('PRODUCT-AAA'),
-                        createEntity('PRODUCT-BBB'),
-                        createEntity('PRODUCT-CCC'),
-                    ],
+                    list: {
+                        [idA]: createEntity(idA),
+                        [idB]: createEntity(idB),
+                        [idC]: createEntity(idC),
+                    },
                     loaded: true,
-                    selectedId: 'PRODUCT-BBB',
+                    selectedId: idB,
                 },
             },
         };
@@ -32,17 +36,17 @@ describe('ProductsComponents Selectors', () => {
     describe('Pizzas Selectors', () => {
         it('getAll() should return the list of Pizzas', () => {
             const results = pizzasQuery.getAll(storeState);
-            const selId = getEntityId(results[1]);
+            const selId = getEntityId(results[idB]);
 
-            expect(results.length).toBe(3);
-            expect(selId).toBe('PRODUCT-BBB');
+            expect(Reflect.ownKeys(results).length).toBe(3);
+            expect(selId).toBe(idB);
         });
 
         it('getSelected() should return the selected Pizza', () => {
             const result = pizzasQuery.getSelected(storeState);
             const selId = getEntityId(result);
 
-            expect(selId).toBe('PRODUCT-BBB');
+            expect(selId).toBe(idB);
         });
 
         it(`getLoaded() should return the current 'loaded' status`, () => {

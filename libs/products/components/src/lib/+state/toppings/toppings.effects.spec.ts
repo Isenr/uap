@@ -26,7 +26,7 @@ describe('ToppingsEffects', () => {
         it('should work', () => {
             actions = hot('-a-|', { a: new ToppingsLoad() });
             expect(effects.loadToppings$).toBeObservable(
-                hot('-a-|', { a: new ToppingsLoaded([]) })
+                hot('-a-|', { a: new ToppingsLoaded({}) })
             );
         });
     });

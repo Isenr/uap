@@ -25,7 +25,7 @@ describe('PizzasEffects', () => {
     describe('loadPizzas$', () => {
         it('should work', () => {
             actions = hot('-a-|', { a: new PizzasLoad() });
-            expect(effects.loadPizzas$).toBeObservable(hot('-a-|', { a: new PizzasLoaded([]) }));
+            expect(effects.loadPizzas$).toBeObservable(hot('-a-|', { a: new PizzasLoaded({}) }));
         });
     });
 });
