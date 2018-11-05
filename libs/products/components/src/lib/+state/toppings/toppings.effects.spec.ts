@@ -6,7 +6,7 @@ import { DataPersistence, NxModule } from '@nrwl/nx';
 import { hot } from '@nrwl/nx/testing';
 import { Observable } from 'rxjs';
 
-import { LoadToppings, ToppingsLoaded } from './toppings.actions';
+import { ToppingsLoad, ToppingsLoaded } from './toppings.actions';
 import { ToppingsEffects } from './toppings.effects';
 
 describe('ToppingsEffects', () => {
@@ -24,9 +24,9 @@ describe('ToppingsEffects', () => {
 
     describe('loadToppings$', () => {
         it('should work', () => {
-            actions = hot('-a-|', { a: new LoadToppings() });
+            actions = hot('-a-|', { a: new ToppingsLoad() });
             expect(effects.loadToppings$).toBeObservable(
-                hot('-a-|', { a: new ToppingsLoaded([]) })
+                hot('-a-|', { a: new ToppingsLoaded({}) })
             );
         });
     });

@@ -22,6 +22,11 @@
     },
     "products-components": {
       "tags": []
+    },
+    "utils": {
+      "tags": [
+        "framework:none"
+      ]
     }
   }
 }

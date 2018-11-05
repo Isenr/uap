@@ -6,7 +6,7 @@ import { DataPersistence, NxModule } from '@nrwl/nx';
 import { hot } from '@nrwl/nx/testing';
 import { Observable } from 'rxjs';
 
-import { LoadPizzas, PizzasLoaded } from './pizzas.actions';
+import { PizzasLoad, PizzasLoaded } from './pizzas.actions';
 import { PizzasEffects } from './pizzas.effects';
 
 describe('PizzasEffects', () => {
@@ -24,8 +24,8 @@ describe('PizzasEffects', () => {
 
     describe('loadPizzas$', () => {
         it('should work', () => {
-            actions = hot('-a-|', { a: new LoadPizzas() });
-            expect(effects.loadPizzas$).toBeObservable(hot('-a-|', { a: new PizzasLoaded([]) }));
+            actions = hot('-a-|', { a: new PizzasLoad() });
+            expect(effects.loadPizzas$).toBeObservable(hot('-a-|', { a: new PizzasLoaded({}) }));
         });
     });
 });

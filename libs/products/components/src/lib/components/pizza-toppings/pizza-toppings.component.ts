@@ -2,15 +2,16 @@ import { ChangeDetectionStrategy, Component, forwardRef, Input } from '@angular/
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Topping } from '@uap/products/models';
 
+const PIZZA_TOPPINGS_ACCESSOR = {
+    multi: true,
+    provide: NG_VALUE_ACCESSOR,
+    // tslint:disable-next-line:no-forward-ref
+    useExisting: forwardRef(() => PizzaToppingsComponent),
+};
+
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
-    providers: [
-        {
-            multi: true,
-            provide: NG_VALUE_ACCESSOR,
-            useExisting: PizzaToppingsComponent,
-        },
-    ],
+    providers: [PIZZA_TOPPINGS_ACCESSOR],
     selector: 'uap-pizza-toppings',
     styleUrls: ['pizza-toppings.component.scss'],
     templateUrl: 'pizza-toppings.component.html',

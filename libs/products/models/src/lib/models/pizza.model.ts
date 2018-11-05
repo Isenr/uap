@@ -1,3 +1,4 @@
+import { Entity } from './entity.model';
 import { Topping } from './topping.model';
 
 /**
@@ -5,8 +6,6 @@ import { Topping } from './topping.model';
  *  - ProductsComponentsPizzasState, and
  *  - productsComponentsReducer
  */
-export interface Pizza {
-    id?: string | number;
-    name?: string;
+export interface Pizza extends Entity {
     toppings?: Topping[];
 }

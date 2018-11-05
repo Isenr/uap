@@ -7,7 +7,7 @@ import { readFirst } from '@nrwl/nx/testing';
 import { Entity } from '@uap/products/models';
 
 import { PizzasLoaded } from './pizzas/pizzas.actions';
-import { ProductsEffects } from './products.effects';
+import { PizzasEffects } from './pizzas/pizzas.effects';
 import { ProductsFacade } from './products.facade';
 import {
     initialState,
@@ -16,6 +16,7 @@ import {
     ProductsState,
 } from './products.reducer';
 import { ToppingsLoaded } from './toppings/toppings.actions';
+import { ToppingsEffects } from './toppings/toppings.effects';
 
 interface TestSchema {
     productsComponents: ProductsState;
@@ -37,14 +38,10 @@ describe('ProductsComponentsFacade', () => {
         beforeEach(() => {
             @NgModule({
                 imports: [
-                    StoreModule.forFeature(
-                        PRODUCTS_FEATURE_KEY,
-                        productsReducer,
-                        {
-                            initialState,
-                        }
-                    ),
-                    EffectsModule.forFeature([ProductsEffects]),
+                    StoreModule.forFeature(PRODUCTS_FEATURE_KEY, productsReducer, {
+                        initialState,
+                    }),
+                    EffectsModule.forFeature([PizzasEffects, ToppingsEffects]),
                 ],
                 providers: [ProductsFacade],
             })
@@ -76,7 +73,7 @@ describe('ProductsComponentsFacade', () => {
                 expect(list.length).toBe(0);
                 expect(isLoaded).toBe(false);
 
-                facade.loadAllPizzas();
+                facade.loadPizzas();
 
                 list = await readFirst(facade.allPizzas$);
                 isLoaded = await readFirst(facade.pizzasLoaded$);
@@ -101,7 +98,7 @@ describe('ProductsComponentsFacade', () => {
                 expect(list.length).toBe(0);
                 expect(isLoaded).toBe(false);
 
-                facade.loadAllToppings();
+                facade.loadToppings();
 
                 list = await readFirst(facade.allToppings$);
                 isLoaded = await readFirst(facade.toppingsLoaded$);

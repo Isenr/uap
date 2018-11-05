@@ -2,41 +2,65 @@ import { Action } from '@ngrx/store';
 import { Pizza } from '@uap/products/models';
 
 export enum PizzasActionTypes {
-    LoadPizzas = '[ProductsComponents] Load Pizzas',
-    LoadPizzasError = '[ProductsComponents] Load Pizzas Error',
+    PizzaCreate = '[ProductsComponents] Pizza Create',
+    PizzaRemove = '[ProductsComponents] Pizza Remove',
+    PizzaSelect = '[ProductsComponents] Pizza Select',
+    PizzaUpdate = '[ProductsComponents] Pizza Update',
+    PizzasLoad = '[ProductsComponents] Pizzas Load',
+    PizzasLoadError = '[ProductsComponents] Pizzas Load Error',
     PizzasLoaded = '[ProductsComponents] Pizzas Loaded',
-    SelectPizza = '[ProductsComponents] Select Pizza',
 }
 
-export class LoadPizzas implements Action {
-    public readonly type = PizzasActionTypes.LoadPizzas;
+export class PizzaCreate implements Action {
+    public readonly type = PizzasActionTypes.PizzaCreate;
+    constructor(public payload: Pizza) {}
 }
 
-export class LoadPizzasError implements Action {
-    public readonly type = PizzasActionTypes.LoadPizzasError;
+export class PizzaRemove implements Action {
+    public readonly type = PizzasActionTypes.PizzaRemove;
+    constructor(public payload: Pizza) {}
+}
+
+export class PizzaUpdate implements Action {
+    public readonly type = PizzasActionTypes.PizzaUpdate;
+    constructor(public payload: Pizza) {}
+}
+
+export class PizzaSelect implements Action {
+    public readonly type = PizzasActionTypes.PizzaSelect;
+    constructor(public payload?: string | number) {}
+}
+
+export class PizzasLoad implements Action {
+    public readonly type = PizzasActionTypes.PizzasLoad;
+}
+
+export class PizzasLoadError implements Action {
+    public readonly type = PizzasActionTypes.PizzasLoadError;
     constructor(public payload: any) {}
 }
 
 export class PizzasLoaded implements Action {
     public readonly type = PizzasActionTypes.PizzasLoaded;
-    constructor(public payload: Pizza[]) {}
-}
-
-export class SelectPizza implements Action {
-    public readonly type = PizzasActionTypes.SelectPizza;
-    constructor(public id: string | number) {}
+    constructor(public payload: { [K in string | number]: Pizza }) {}
 }
 
 export type PizzasAction =
     // prettier-ignore
-    LoadPizzas
-    | LoadPizzasError
-    | PizzasLoaded
-    | SelectPizza;
+    PizzaCreate
+    | PizzaRemove
+    | PizzaSelect
+    | PizzaUpdate
+    | PizzasLoad
+    | PizzasLoadError
+    | PizzasLoaded;
 
 export const fromPizzasActions = {
-    LoadPizzas,
-    LoadPizzasError,
+    PizzaCreate,
+    PizzaRemove,
+    PizzaSelect,
+    PizzaUpdate,
+    PizzasLoad,
+    PizzasLoadError,
     PizzasLoaded,
-    SelectPizza,
 };

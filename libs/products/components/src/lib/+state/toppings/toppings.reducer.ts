@@ -1,17 +1,16 @@
 import { entityListInitialState, EntityListState, Topping } from '@uap/products/models';
+import { dictionaryToArray } from '@uap/utils';
 
 import { ToppingsAction, ToppingsActionTypes } from './toppings.actions';
 
-export const TOPPINGS_FEATURE_KEY = 'productsComponentsToppings';
-
-export type ToppingsState = EntityListState<Topping>;
-
-export interface ToppingsPartialState {
-    readonly [TOPPINGS_FEATURE_KEY]: ToppingsState;
+export interface ToppingsState extends EntityListState<Topping> {
+    data: { [K in string | number]: Topping };
+    selectedIds?: Array<string | number>;
 }
 
 export const initialState: ToppingsState = {
     ...entityListInitialState,
+    data: {},
 };
 
 export function toppingsReducer(
@@ -22,8 +21,16 @@ export function toppingsReducer(
         case ToppingsActionTypes.ToppingsLoaded: {
             state = {
                 ...state,
-                list: action.payload,
+                data: action.payload,
+                list: dictionaryToArray(action.payload),
                 loaded: true,
+            };
+            break;
+        }
+        case ToppingsActionTypes.ToppingsSelect: {
+            state = {
+                ...state,
+                selectedIds: action.payload,
             };
             break;
         }

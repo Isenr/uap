@@ -6,6 +6,10 @@ describe('Toppings Selectors', () => {
     const ERROR_MSG = 'No Error Available';
     const getEntityId = it => it['id'];
 
+    const idA = 'PRODUCT-AAA';
+    const idB = 'PRODUCT-BBB';
+    const idC = 'PRODUCT-CCC';
+
     let storeState;
 
     beforeEach(() => {
@@ -15,14 +19,16 @@ describe('Toppings Selectors', () => {
         });
         storeState = {
             productsComponents: {
-                error: ERROR_MSG,
-                list: [
-                    createEntity('PRODUCT-AAA'),
-                    createEntity('PRODUCT-BBB'),
-                    createEntity('PRODUCT-CCC'),
-                ],
-                loaded: true,
-                selectedId: 'PRODUCT-BBB',
+                toppings: {
+                    error: ERROR_MSG,
+                    list: {
+                        [idA]: createEntity(idA),
+                        [idB]: createEntity(idB),
+                        [idC]: createEntity(idC),
+                    },
+                    loaded: true,
+                    selectedId: idB,
+                },
             },
         };
     });
@@ -30,10 +36,10 @@ describe('Toppings Selectors', () => {
     describe('Toppings Selectors', () => {
         it('getAll() should return the list of Toppings', () => {
             const results = toppingsQuery.getAll(storeState);
-            const selId = getEntityId(results[1]);
+            const selId = getEntityId(results[idB]);
 
-            expect(results.length).toBe(3);
-            expect(selId).toBe('PRODUCT-BBB');
+            expect(Reflect.ownKeys(results).length).toBe(3);
+            expect(selId).toBe(idB);
         });
 
         it('getSelected() should return the selected Topping', () => {
