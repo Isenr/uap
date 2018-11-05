@@ -5,9 +5,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { ProductsEffects } from './+state/products.effects';
+import { PizzasEffects } from './+state/pizzas/pizzas.effects';
 import { ProductsFacade } from './+state/products.facade';
 import { PRODUCTS_FEATURE_KEY, productsReducer } from './+state/products.reducer';
+import { ToppingsEffects } from './+state/toppings/toppings.effects';
 import { PizzaDisplayComponent } from './components/pizza-display/pizza-display.component';
 import { PizzaFormComponent } from './components/pizza-form/pizza-form.component';
 import { PizzaItemComponent } from './components/pizza-item/pizza-item.component';
@@ -46,7 +47,7 @@ export const ROUTES: Routes = [
         ReactiveFormsModule,
         RouterModule.forChild(ROUTES),
         StoreModule.forFeature(PRODUCTS_FEATURE_KEY, productsReducer),
-        EffectsModule.forFeature([ProductsEffects]),
+        EffectsModule.forFeature([PizzasEffects, ToppingsEffects]),
     ],
     providers: [ProductsFacade],
 })
