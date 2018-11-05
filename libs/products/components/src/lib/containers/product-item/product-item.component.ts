@@ -1,70 +1,62 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Pizza, Topping } from '@uap/products/models';
-import { PizzasService, ToppingsService } from '@uap/products/services';
+import { Pizza } from '@uap/products/models';
+import { merge, Subscription } from 'rxjs';
+import { tap } from 'rxjs/operators';
+
+import { ProductsFacade } from '../../+state/products.facade';
 
 @Component({
     selector: 'uap-product-item',
     styleUrls: ['product-item.component.scss'],
     templateUrl: 'product-item.component.html',
 })
-export class ProductItemComponent implements OnInit {
-    public pizza: Pizza;
-    public visualise: Pizza;
-    public toppings: Topping[];
+export class ProductItemComponent implements OnInit, OnDestroy {
+    public subscription: Subscription;
 
     constructor(
-        private pizzaService: PizzasService,
-        private toppingsService: ToppingsService,
         private route: ActivatedRoute,
-        private router: Router
+        private router: Router,
+        public productsFacade: ProductsFacade
     ) {}
 
     public ngOnInit() {
-        this.pizzaService.getPizzas().subscribe(pizzas => {
-            const param = this.route.snapshot.params.id;
-            let pizza;
-            if (param === 'new') {
-                pizza = {};
-            } else {
-                pizza = pizzas.find(({ id }) => id === parseInt(param, 10));
-            }
-            this.pizza = pizza;
-            this.toppingsService.getToppings().subscribe(toppings => {
-                this.toppings = toppings;
-                this.onSelect(toppings.map(topping => topping.id));
-            });
-        });
+        this.productsFacade.loadAllToppings();
+
+        this.subscription = merge(
+            this.route.params.pipe(
+                tap(({ id }) => {
+                    this.productsFacade.selectPizza(id);
+                })
+            ),
+            this.productsFacade.selectedPizzaId$.pipe(
+                tap(id => {
+                    this.router.navigate([`/products${id ? '/' + id : ''}`]);
+                })
+            )
+        ).subscribe();
+    }
+
+    public ngOnDestroy(): void {
+        this.subscription.unsubscribe();
     }
 
     public onSelect(event: Array<string | number>) {
-        let toppings;
-        if (this.toppings && this.toppings.length) {
-            toppings = event.map(id => this.toppings.find(topping => topping.id === id));
-        } else {
-            toppings = this.pizza.toppings;
-        }
-        this.visualise = { ...this.pizza, toppings };
+        this.productsFacade.selectToppings(event);
     }
 
     public onCreate(event: Pizza) {
-        this.pizzaService.createPizza(event).subscribe(pizza => {
-            this.router.navigate([`/products/${pizza.id}`]);
-        });
+        this.productsFacade.createPizza(event);
     }
 
     public onUpdate(event: Pizza) {
-        this.pizzaService.updatePizza(event).subscribe(() => {
-            this.router.navigate([`/products`]);
-        });
+        this.productsFacade.updatePizza(event);
     }
 
     public onRemove(event: Pizza) {
         const remove = window.confirm('Are you sure?');
         if (remove) {
-            this.pizzaService.removePizza(event).subscribe(() => {
-                this.router.navigate([`/products`]);
-            });
+            this.productsFacade.removePizza(event);
         }
     }
 }

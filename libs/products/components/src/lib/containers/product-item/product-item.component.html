@@ -1,10 +1,10 @@
 <div class="product-item">
-    <uap-pizza-form [pizza]="pizza"
-                    [toppings]="toppings"
+    <uap-pizza-form [pizza]="productsFacade.selectedPizza$ | async"
+                    [toppings]="productsFacade.allToppings$ | async"
                     (selected)="onSelect($event)"
                     (create)="onCreate($event)"
                     (update)="onUpdate($event)"
                     (remove)="onRemove($event)">
-        <uap-pizza-display [pizza]="visualise"></uap-pizza-display>
+        <uap-pizza-display [pizza]="productsFacade.visualise$ | async"></uap-pizza-display>
     </uap-pizza-form>
 </div>

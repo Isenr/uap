@@ -2,17 +2,18 @@ import { Action } from '@ngrx/store';
 import { Topping } from '@uap/products/models';
 
 export enum ToppingsActionTypes {
-    LoadToppings = '[ProductsComponents] Load Toppings',
-    LoadToppingsError = '[ProductsComponents] Load Toppings Error',
+    ToppingsLoad = '[ProductsComponents] Toppings Load',
+    ToppingsLoadError = '[ProductsComponents] Toppings Load Error',
     ToppingsLoaded = '[ProductsComponents] Toppings Loaded',
+    ToppingsSelect = '[ProductsComponents] Toppings Select',
 }
 
-export class LoadToppings implements Action {
-    public readonly type = ToppingsActionTypes.LoadToppings;
+export class ToppingsLoad implements Action {
+    public readonly type = ToppingsActionTypes.ToppingsLoad;
 }
 
-export class ToppingsError implements Action {
-    public readonly type = ToppingsActionTypes.LoadToppingsError;
+export class ToppingsLoadError implements Action {
+    public readonly type = ToppingsActionTypes.ToppingsLoadError;
     constructor(public payload: any) {}
 }
 
@@ -21,14 +22,21 @@ export class ToppingsLoaded implements Action {
     constructor(public payload: Topping[]) {}
 }
 
+export class ToppingsSelect implements Action {
+    public readonly type = ToppingsActionTypes.ToppingsSelect;
+    constructor(public payload?: Array<string | number>) {}
+}
+
 export type ToppingsAction =
     // prettier-ignore
-    LoadToppings
-    | ToppingsError
-    | ToppingsLoaded;
+    ToppingsLoad
+    | ToppingsLoadError
+    | ToppingsLoaded
+    | ToppingsSelect;
 
 export const fromToppingsActions = {
-    LoadToppings,
-    ToppingsError,
+    ToppingsLoad,
+    ToppingsLoadError,
     ToppingsLoaded,
+    ToppingsSelect,
 };

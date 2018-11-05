@@ -41,13 +41,13 @@
         "@angular/platform-server": "^7.0.2",
         "@angular/router": "^7.0.2",
         "@ngrx/effects": "^6.1.2",
+        "@ngrx/entity": "^6.1.2",
         "@ngrx/router-store": "^6.1.2",
         "@ngrx/store": "^6.1.2",
         "@nrwl/nx": "^7.0.0",
         "core-js": "^2.5.7",
         "rxjs": "^6.3.3",
-        "zone.js": "^0.8.26",
-        "@ngrx/entity": "6.1.0"
+        "zone.js": "^0.8.26"
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "^0.10.4",

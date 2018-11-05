@@ -1,14 +1,8 @@
-import { entityListInitialState, EntityListState, Pizza } from '@uap/products/models';
+import { entityListInitialState, EntityListState, Pizza, Topping } from '@uap/products/models';
 
 import { PizzasAction, PizzasActionTypes } from './pizzas.actions';
 
-export const PIZZAS_FEATURE_KEY = 'productsComponentsPizzas';
-
-export type PizzasState = EntityListState<Pizza>;
-
-export interface PizzasPartialState {
-    readonly [PIZZAS_FEATURE_KEY]: PizzasState;
-}
+export interface PizzasState extends EntityListState<Pizza> {}
 
 export const initialState: PizzasState = {
     ...entityListInitialState,
@@ -19,6 +13,32 @@ export function pizzasReducer(
     action: PizzasAction
 ): PizzasState {
     switch (action.type) {
+        case PizzasActionTypes.PizzaCreate: {
+            state = {
+                ...state,
+                list: [...state.list, action.payload],
+                selectedId: action.payload.id,
+            };
+            break;
+        }
+        case PizzasActionTypes.PizzaRemove: {
+            state = {
+                ...state,
+                list: state.list.filter(pizza => pizza.id !== action.payload.id),
+                selectedId: undefined,
+            };
+            break;
+        }
+        case PizzasActionTypes.PizzaUpdate: {
+            state = {
+                ...state,
+                list: state.list.map(
+                    pizza => (pizza.id === action.payload.id ? action.payload : pizza)
+                ),
+                selectedId: undefined,
+            };
+            break;
+        }
         case PizzasActionTypes.PizzasLoaded: {
             state = {
                 ...state,
@@ -27,11 +47,10 @@ export function pizzasReducer(
             };
             break;
         }
-        case PizzasActionTypes.SelectPizza: {
+        case PizzasActionTypes.PizzaSelect: {
             state = {
                 ...state,
-                loaded: true,
-                selectedId: action.id,
+                selectedId: action.payload,
             };
             break;
         }

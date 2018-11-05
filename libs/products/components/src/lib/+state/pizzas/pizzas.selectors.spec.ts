@@ -15,14 +15,16 @@ describe('ProductsComponents Selectors', () => {
         });
         storeState = {
             productsComponents: {
-                error: ERROR_MSG,
-                list: [
-                    createEntity('PRODUCT-AAA'),
-                    createEntity('PRODUCT-BBB'),
-                    createEntity('PRODUCT-CCC'),
-                ],
-                loaded: true,
-                selectedId: 'PRODUCT-BBB',
+                pizzas: {
+                    error: ERROR_MSG,
+                    list: [
+                        createEntity('PRODUCT-AAA'),
+                        createEntity('PRODUCT-BBB'),
+                        createEntity('PRODUCT-CCC'),
+                    ],
+                    loaded: true,
+                    selectedId: 'PRODUCT-BBB',
+                },
             },
         };
     });
