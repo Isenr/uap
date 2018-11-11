@@ -1,13 +1,9 @@
 import { async, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import {
-    PizzasService,
-    PizzasServiceMock,
-    ToppingsService,
-    ToppingsServiceMock,
-} from '@uap/products/services';
+import { of } from 'rxjs';
 
+import { ProductsFacade } from '../../+state';
 import { PizzaDisplayComponent } from '../../components/pizza-display/pizza-display.component';
 import { PizzaFormComponent } from '../../components/pizza-form/pizza-form.component';
 import { PizzaToppingsComponent } from '../../components/pizza-toppings/pizza-toppings.component';
@@ -25,12 +21,18 @@ describe('ProductItemComponent', () => {
             imports: [ReactiveFormsModule, RouterTestingModule],
             providers: [
                 {
-                    provide: PizzasService,
-                    useValue: PizzasServiceMock,
-                },
-                {
-                    provide: ToppingsService,
-                    useValue: ToppingsServiceMock,
+                    provide: ProductsFacade,
+                    useValue: {
+                        allToppings$: of([]),
+                        selectedPizza$: of(),
+                        selectedPizzaId$: of(),
+                        visualise$: of(),
+                        createPizza() {},
+                        removePizza() {},
+                        selectPizza() {},
+                        selectToppings() {},
+                        updatePizza() {},
+                    },
                 },
             ],
         }).compileComponents();

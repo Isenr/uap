@@ -18,7 +18,7 @@ export class PizzaFormComponent implements OnChanges {
     public toppings: Topping[];
 
     @Output()
-    public selected = new EventEmitter<number[]>();
+    public selected = new EventEmitter<string[]>();
 
     @Output()
     public create = new EventEmitter<Pizza>();

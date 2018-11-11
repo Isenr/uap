@@ -4,7 +4,7 @@ import { Pizza } from '@uap/products/models';
 import { merge, Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
-import { ProductsFacade } from '../../+state/products.facade';
+import { ProductsFacade } from '../../+state';
 
 @Component({
     selector: 'uap-product-item',
@@ -39,19 +39,8 @@ export class ProductItemComponent implements OnInit, OnDestroy {
     }
 
     public ngOnDestroy(): void {
+        if (!this.subscription) return;
         this.subscription.unsubscribe();
-    }
-
-    public onSelect(event: Array<string | number>) {
-        this.productsFacade.selectToppings(event);
-    }
-
-    public onCreate(event: Pizza) {
-        this.productsFacade.createPizza(event);
-    }
-
-    public onUpdate(event: Pizza) {
-        this.productsFacade.updatePizza(event);
     }
 
     public onRemove(event: Pizza) {

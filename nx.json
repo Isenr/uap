@@ -1,32 +1,36 @@
 {
-  "npmScope": "uap",
-  "implicitDependencies": {
-    "angular.json": "*",
-    "package.json": "*",
-    "tsconfig.json": "*",
-    "tslint.json": "*",
-    "nx.json": "*"
-  },
-  "projects": {
-    "root-core": {
-      "tags": []
+    "npmScope": "uap",
+    "implicitDependencies": {
+        "angular.json": "*",
+        "package.json": "*",
+        "tsconfig.json": "*",
+        "tslint.json": "*",
+        "nx.json": "*"
     },
-    "root-core-e2e": {
-      "tags": []
-    },
-    "products-models": {
-      "tags": []
-    },
-    "products-services": {
-      "tags": []
-    },
-    "products-components": {
-      "tags": []
-    },
-    "utils": {
-      "tags": [
-        "framework:none"
-      ]
+    "projects": {
+        "root-core": {
+            "tags": []
+        },
+        "root-core-e2e": {
+            "tags": []
+        },
+        "products-models": {
+            "tags": []
+        },
+        "products-services": {
+            "tags": []
+        },
+        "products-components": {
+            "tags": []
+        },
+        "utils": {
+            "tags": ["framework:none"]
+        },
+        "state": {
+            "tags": []
+        },
+        "root-core-models": {
+            "tags": []
+        }
     }
-  }
 }

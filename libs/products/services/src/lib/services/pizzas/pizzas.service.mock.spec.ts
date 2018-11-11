@@ -7,7 +7,7 @@ export const PizzasServiceMock: Pick<PizzasService, keyof PizzasService> = {
     createPizza(payload: Pizza) {
         return observableOf<Pizza>({
             ...payload,
-            id: 1,
+            id: '1',
         });
     },
     getPizzas() {

@@ -29,4 +29,8 @@ export const DROP_ANIMATION = trigger('drop', [
 export class PizzaDisplayComponent {
     @Input()
     public pizza: Pizza;
+
+    constructor() {
+        (window as any).PizzaDisplayComponent = this;
+    }
 }

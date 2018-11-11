@@ -5,18 +5,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 
-import { PizzasEffects } from './+state/pizzas/pizzas.effects';
-import { ProductsFacade } from './+state/products.facade';
-import { PRODUCTS_FEATURE_KEY, productsReducer } from './+state/products.reducer';
-import { ToppingsEffects } from './+state/toppings/toppings.effects';
+import { effects, PRODUCT_FEATURE_KEY, productReducers, ProductsFacade } from './+state';
+import { productInitialState } from './+state/product.initial-state';
 import { PizzaDisplayComponent } from './components/pizza-display/pizza-display.component';
 import { PizzaFormComponent } from './components/pizza-form/pizza-form.component';
 import { PizzaItemComponent } from './components/pizza-item/pizza-item.component';
 import { PizzaToppingsComponent } from './components/pizza-toppings/pizza-toppings.component';
 import { ProductItemComponent } from './containers/product-item/product-item.component';
 import { ProductsComponent } from './containers/products/products.component';
-
-export { ProductsFacade } from './+state/products.facade';
 
 export const ROUTES: Routes = [
     {
@@ -46,8 +42,10 @@ export const ROUTES: Routes = [
         CommonModule,
         ReactiveFormsModule,
         RouterModule.forChild(ROUTES),
-        StoreModule.forFeature(PRODUCTS_FEATURE_KEY, productsReducer),
-        EffectsModule.forFeature([PizzasEffects, ToppingsEffects]),
+        StoreModule.forFeature(PRODUCT_FEATURE_KEY, productReducers, {
+            initialState: productInitialState,
+        }),
+        EffectsModule.forFeature([...effects]),
     ],
     providers: [ProductsFacade],
 })

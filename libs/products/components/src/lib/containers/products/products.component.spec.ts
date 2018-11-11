@@ -1,8 +1,8 @@
 import { async, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { PizzasService } from '@uap/products/services';
 import { of } from 'rxjs';
 
+import { ProductsFacade } from '../../+state';
 import { PizzaDisplayComponent } from '../../components/pizza-display/pizza-display.component';
 import { PizzaItemComponent } from '../../components/pizza-item/pizza-item.component';
 import { ProductsComponent } from './products.component';
@@ -14,11 +14,10 @@ describe('ProductsComponent', () => {
             imports: [RouterTestingModule],
             providers: [
                 {
-                    provide: PizzasService,
+                    provide: ProductsFacade,
                     useValue: {
-                        getPizzas() {
-                            return of([]);
-                        },
+                        allPizzas$: of([]),
+                        loadPizzas() {},
                     },
                 },
             ],

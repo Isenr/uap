@@ -15,7 +15,9 @@
             "@uap/products/models": ["libs/products/models/src/index.ts"],
             "@uap/products/services": ["libs/products/services/src/index.ts"],
             "@uap/products/components": ["libs/products/components/src/index.ts"],
-            "@uap/utils": ["libs/utils/src/index.ts"]
+            "@uap/utils": ["libs/utils/src/index.ts"],
+            "@uap/state": ["libs/state/src/index.ts"],
+            "@uap/root-core/models": ["libs/root-core/models/src/index.ts"]
         }
     },
     "exclude": ["node_modules", "tmp"]

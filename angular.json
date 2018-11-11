@@ -102,7 +102,7 @@
                 "e2e": {
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
-                        "protractorConfig": "apps/root-core-e2e/protractor.conf.js",
+                        "protractorConfig": "apps/root-core-e2e/protractor.conf.ts",
                         "devServerTarget": "root-core:serve"
                     },
                     "configurations": {
@@ -209,7 +209,7 @@
                     "options": {
                         "main": "libs/utils/src/test.ts",
                         "tsConfig": "libs/utils/tsconfig.spec.json",
-                        "karmaConfig": "libs/utils/karma.conf.js"
+                        "karmaConfig": "libs/utils/karma.conf.ts"
                     }
                 },
                 "lint": {
@@ -218,6 +218,58 @@
                         "tsConfig": [
                             "libs/utils/tsconfig.lib.json",
                             "libs/utils/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            }
+        },
+        "state": {
+            "root": "libs/state",
+            "sourceRoot": "libs/state/src",
+            "projectType": "library",
+            "prefix": "uap",
+            "architect": {
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "libs/state/src/test.ts",
+                        "tsConfig": "libs/state/tsconfig.spec.json",
+                        "karmaConfig": "libs/state/karma.conf.ts"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "libs/state/tsconfig.lib.json",
+                            "libs/state/tsconfig.spec.json"
+                        ],
+                        "exclude": ["**/node_modules/**"]
+                    }
+                }
+            }
+        },
+        "root-core-models": {
+            "root": "libs/root-core/models",
+            "sourceRoot": "libs/root-core/models/src",
+            "projectType": "library",
+            "prefix": "uap",
+            "architect": {
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "main": "libs/root-core/models/src/test.ts",
+                        "tsConfig": "libs/root-core/models/tsconfig.spec.json",
+                        "karmaConfig": "libs/root-core/models/karma.conf.js"
+                    }
+                },
+                "lint": {
+                    "builder": "@angular-devkit/build-angular:tslint",
+                    "options": {
+                        "tsConfig": [
+                            "libs/root-core/models/tsconfig.lib.json",
+                            "libs/root-core/models/tsconfig.spec.json"
                         ],
                         "exclude": ["**/node_modules/**"]
                     }

@@ -1,9 +1,9 @@
 <div class="product-item">
     <uap-pizza-form [pizza]="productsFacade.selectedPizza$ | async"
                     [toppings]="productsFacade.allToppings$ | async"
-                    (selected)="onSelect($event)"
-                    (create)="onCreate($event)"
-                    (update)="onUpdate($event)"
+                    (selected)="productsFacade.selectToppings($event)"
+                    (create)="productsFacade.createPizza($event)"
+                    (update)="productsFacade.updatePizza($event)"
                     (remove)="onRemove($event)">
         <uap-pizza-display [pizza]="productsFacade.visualise$ | async"></uap-pizza-display>
     </uap-pizza-form>
