@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Pizza } from '@uap/products/models';
-import { merge, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 import { ProductsFacade } from '../../+state';
@@ -14,28 +14,18 @@ import { ProductsFacade } from '../../+state';
 export class ProductItemComponent implements OnInit, OnDestroy {
     public subscription: Subscription;
 
-    constructor(
-        private route: ActivatedRoute,
-        private router: Router,
-        public productsFacade: ProductsFacade
-    ) {}
+    constructor(private router: Router, public productsFacade: ProductsFacade) {}
 
     public ngOnInit() {
         this.productsFacade.loadAll();
 
-        this.subscription = merge(
-            this.route.params.pipe(
-                tap(({ id }) => {
-                    this.productsFacade.selectPizza(id);
-                })
-            ),
-            this.productsFacade.selectedPizzaId$.pipe(
-                tap(id => {
-                    if (this.route.snapshot.params.id === id) return;
-                    this.router.navigate([`/products${id ? '/' + id : ''}`]);
+        this.subscription = this.productsFacade.selectedPizza$
+            .pipe(
+                tap(pizza => {
+                    this.router.navigate([`/products${pizza ? '/' + pizza.id : ''}`]);
                 })
             )
-        ).subscribe();
+            .subscribe();
     }
 
     public ngOnDestroy(): void {
@@ -45,8 +35,7 @@ export class ProductItemComponent implements OnInit, OnDestroy {
 
     public onRemove(event: Pizza) {
         const remove = window.confirm('Are you sure?');
-        if (remove) {
-            this.productsFacade.removePizza(event);
-        }
+        if (!remove) return;
+        this.productsFacade.removePizza(event);
     }
 }

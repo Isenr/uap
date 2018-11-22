@@ -25,7 +25,6 @@ describe('ProductItemComponent', () => {
                     useValue: {
                         allToppings$: of([]),
                         selectedPizza$: of(),
-                        selectedPizzaId$: of(),
                         visualise$: of(),
                         createPizza() {},
                         removePizza() {},

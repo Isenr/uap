@@ -5,12 +5,15 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NxModule } from '@nrwl/nx';
+import { ROUTER_FEATURE_KEY } from '@uap/state';
 import { storeFreeze } from 'ngrx-store-freeze';
 
 import { environment } from '../environments/environment';
-import { RootCoreEffects, rootCoreInitialState, rootCoreReducer } from './+state';
+import { CustomSerializer, rootReducers } from './+state';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './containers/app/app.component';
+
+const metaReducers = !environment.production ? [storeFreeze] : [];
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -28,7 +31,7 @@ import { AppComponent } from './containers/app/app.component';
          *
          * See: https://github.com/ngrx/platform/blob/master/docs/effects/api.md#forroot
          */
-        EffectsModule.forRoot([RootCoreEffects]),
+        EffectsModule.forRoot([]),
 
         /**
          * StoreModule.forRoot is imported once in the root module, accepting a reducer
@@ -37,23 +40,20 @@ import { AppComponent } from './containers/app/app.component';
          * meta-reducer. This returns all providers for an @ngrx/store
          * based application.
          */
-        StoreModule.forRoot(
-            { rootCore: rootCoreReducer },
-            {
-                initialState: { rootCore: rootCoreInitialState },
-                metaReducers: !environment.production ? [storeFreeze] : [],
-            }
-        ),
+        StoreModule.forRoot(rootReducers, {
+            metaReducers,
+        }),
 
         /**
          * @ngrx/router-store keeps router state up-to-date in the store.
          */
         StoreRouterConnectingModule.forRoot({
+            serializer: CustomSerializer,
             /**
              * They stateKey defines the name of the state used by the router-store reducer.
              * This matches the key defined in the map of reducers
              */
-            stateKey: 'router',
+            stateKey: ROUTER_FEATURE_KEY,
         }),
 
         /**

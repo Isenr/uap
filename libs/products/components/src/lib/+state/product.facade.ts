@@ -16,8 +16,6 @@ export class ProductsFacade {
     public allPizzas$ = this.store.pipe(select(pizzaQuery.getAll));
 
     public selectedPizza$ = this.store.pipe(select(pizzaQuery.getSelected));
-
-    public selectedPizzaId$ = this.store.pipe(select(pizzaQuery.getSelectedId));
     // #endregion pizzas
 
     // #region toppings

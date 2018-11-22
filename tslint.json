@@ -93,7 +93,6 @@
         "component-selector": [true, "element", "app", "kebab-case"],
         "directive-class-suffix": [true, "Directive"],
         "directive-selector": [true, "attribute", "app", "camelCase"],
-        "no-forward-ref": true,
         "no-input-rename": true,
         "no-output-on-prefix": true,
         "no-output-rename": true,
