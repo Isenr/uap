@@ -6,7 +6,7 @@
         </div>
         <uap-pizza-item
             *ngFor="let pizza of (productsFacade.allPizzas$ | async | keyvalue)"
-            [pizza]="pizza.value"
+            [pizza]="pizza | objectvalue"
         >
         </uap-pizza-item>
     </div>

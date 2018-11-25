@@ -4,33 +4,45 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+import { ObjectValuePipe } from '@uap/utils';
 
-import { effects, PRODUCT_FEATURE_KEY, productReducers, ProductsFacade } from './+state';
-import { productInitialState } from './+state/product.initial-state';
-import { PizzaDisplayComponent } from './components/pizza-display/pizza-display.component';
-import { PizzaFormComponent } from './components/pizza-form/pizza-form.component';
-import { PizzaItemComponent } from './components/pizza-item/pizza-item.component';
-import { PizzaToppingsComponent } from './components/pizza-toppings/pizza-toppings.component';
-import { ProductItemComponent } from './containers/product-item/product-item.component';
-import { ProductsComponent } from './containers/products/products.component';
+import {
+    effects,
+    PRODUCT_FEATURE_KEY,
+    productInitialState,
+    productReducers,
+    ProductsFacade,
+} from './+state';
+import {
+    PizzaDisplayComponent,
+    PizzaFormComponent,
+    PizzaItemComponent,
+    PizzaToppingsComponent,
+} from './components';
+import { ProductItemComponent, ProductsComponent } from './containers';
+import { ProductComponentsResolver } from './resolvers';
 
 export const ROUTES: Routes = [
     {
         component: ProductsComponent,
         path: '',
+        resolve: { data: ProductComponentsResolver },
     },
     {
         component: ProductItemComponent,
         path: 'new',
+        resolve: { data: ProductComponentsResolver },
     },
     {
         component: ProductItemComponent,
         path: ':pizzaId',
+        resolve: { data: ProductComponentsResolver },
     },
 ];
 
 @NgModule({
     declarations: [
+        ObjectValuePipe,
         PizzaDisplayComponent,
         PizzaFormComponent,
         PizzaItemComponent,
@@ -47,6 +59,6 @@ export const ROUTES: Routes = [
         }),
         EffectsModule.forFeature([...effects]),
     ],
-    providers: [ProductsFacade],
+    providers: [ProductComponentsResolver, ProductsFacade],
 })
 export class ProductsComponentsModule {}

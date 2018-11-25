@@ -1,12 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Action } from '@ngrx/store';
+import { Action, Store } from '@ngrx/store';
 import { DataPersistence } from '@nrwl/nx';
 import { ProductPartialState } from '@uap/products/models';
 import { Observable } from 'rxjs';
+import { distinctUntilChanged, map, switchMapTo, tap } from 'rxjs/operators';
 
 import { PRODUCT_FEATURE_KEY } from '../product.feature-key';
-import { PizzaActionTypes, PizzasLoad, PizzasLoaded, PizzasLoadError } from './actions';
+import {
+    PizzaActionsUnion,
+    PizzaActionTypes,
+    PizzasLoad,
+    PizzasLoaded,
+    PizzasLoadError,
+} from './actions';
 
 @Injectable()
 export class PizzaEffects {
@@ -117,6 +125,21 @@ export class PizzaEffects {
         }
     );
 
+    @Effect({ dispatch: false })
+    public pizzaCreated$ = this.actions.pipe(
+        ofType(PizzaActionTypes.PizzaCreate, PizzaActionTypes.PizzaRemove),
+        switchMapTo(this.store),
+        map(
+            ({
+                products: {
+                    pizzas: { selectedId },
+                },
+            }) => selectedId
+        ),
+        distinctUntilChanged(),
+        tap(pizzaId => this.router.navigate([`/products${pizzaId ? '/' + pizzaId : ''}`]))
+    );
+
     // workaround to get DataPersistence to work with NgRx v7.0.0-beta.0
     private get dataPersistence(): DataPersistence<ProductPartialState> {
         if ((this._dataPersistence.actions as Actions & { ofType: any }).ofType) {
@@ -132,7 +155,9 @@ export class PizzaEffects {
     }
 
     constructor(
-        private actions$: Actions,
-        private _dataPersistence: DataPersistence<ProductPartialState>
+        private actions: Actions<PizzaActionsUnion>,
+        private _dataPersistence: DataPersistence<ProductPartialState>,
+        private store: Store<ProductPartialState>,
+        private router: Router
     ) {}
 }

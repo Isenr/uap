@@ -1,6 +1,6 @@
 <div class="product-item">
     <uap-pizza-form [pizza]="productsFacade.selectedPizza$ | async"
-                    [toppings]="productsFacade.allToppings$ | async | keyvalue"
+                    [toppings]="productsFacade.allToppings$ | async | keyvalue | objectvalue"
                     (selected)="productsFacade.selectToppings($event)"
                     (create)="productsFacade.createPizza($event)"
                     (update)="productsFacade.updatePizza($event)"

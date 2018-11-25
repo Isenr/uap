@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { Pizza } from '@uap/products/models';
 
 @Component({
     changeDetection: ChangeDetectionStrategy.OnPush,
@@ -8,5 +9,5 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 })
 export class PizzaItemComponent {
     @Input()
-    public pizza: any;
+    public pizza: Pizza;
 }
