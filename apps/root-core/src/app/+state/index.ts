@@ -1,2 +1,2 @@
-export { rootReducers } from './root.reducer';
+export { metaReducers, rootReducers } from './root.reducer';
 export { CustomSerializer } from './router/router.serialiser';
