@@ -1,4 +1,36 @@
 {
+    "editor.detectIndentation": false,
+    "editor.fontFamily": "Fira code",
+    "editor.fontLigatures": true,
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/*.js": {
+            "when": "$(basename).ts"
+        },
+        "**/*.js.map": {
+            "when": "$(basename)"
+        }
+    },
+    "files.eol": "\n",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "html.format.endWithNewline": true,
+    "html.format.wrapAttributes": "force-aligned",
+    "javascript.preferences.quoteStyle": "single",
     "prettier.printWidth": 100,
-    "files.eol": "\n"
+    "prettier.singleQuote": true,
+    "prettier.tabWidth": 4,
+    "prettier.trailingComma": "es5",
+    "search.exclude": {
+        "**/bin": true,
+        "**/bower_components": true,
+        "**/dist": true,
+        "**/node_modules": true,
+        "**/obj": true
+    },
+    "typescript.preferences.quoteStyle": "single"
 }

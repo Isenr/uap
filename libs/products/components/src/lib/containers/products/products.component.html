@@ -1,16 +1,13 @@
 <div class="products">
-    <div class="products__new">
-        <a class="btn btn__ok"
-           routerLink="./new">
-            New Pizza
-        </a>
-    </div>
+    <div class="products__new"><a class="btn btn__ok" routerLink="./new"> New Pizza </a></div>
     <div class="products__list">
-        <div *ngIf="!((productsFacade.allPizzas$ | async)?.length)">
+        <div *ngIf="!(productsFacade.allPizzas$ | async | keyvalue)?.length">
             No pizzas, add one to get started.
         </div>
-        <uap-pizza-item *ngFor="let pizza of (productsFacade.allPizzas$ | async)"
-                        [pizza]="pizza">
+        <uap-pizza-item
+            *ngFor="let pizza of (productsFacade.allPizzas$ | async | keyvalue)"
+            [pizza]="pizza.value"
+        >
         </uap-pizza-item>
     </div>
 </div>

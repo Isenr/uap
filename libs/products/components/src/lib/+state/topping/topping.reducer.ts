@@ -1,13 +1,13 @@
 import { ToppingState } from '@uap/products/models';
 
-import { ToppingActionsUnion, ToppingActionTypes } from './topping.actions';
+import { ToppingActionsUnion, ToppingActionTypes } from './actions';
 import { toppingAdapter } from './topping.adapter';
 import { toppingInitialState } from './topping.initial-state';
 
-export function toppingReducer(
+export const toppingReducer = (
     state: ToppingState = toppingInitialState,
     action: ToppingActionsUnion
-): ToppingState {
+): ToppingState => {
     switch (action.type) {
         case ToppingActionTypes.ToppingsLoaded: {
             state = {
@@ -25,4 +25,4 @@ export function toppingReducer(
         }
     }
     return state;
-}
+};

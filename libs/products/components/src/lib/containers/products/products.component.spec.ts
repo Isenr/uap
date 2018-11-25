@@ -16,7 +16,7 @@ describe('ProductsComponent', () => {
                 {
                     provide: ProductsFacade,
                     useValue: {
-                        allPizzas$: of([]),
+                        allPizzas$: of({}),
                         loadPizzas() {},
                     },
                 },

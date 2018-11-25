@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 import { PRODUCT_FEATURE_KEY } from '../product.feature-key';
 import { productInitialState } from '../product.initial-state';
 import { productReducers } from '../product.reducer';
-import { ToppingsLoad, ToppingsLoaded } from './topping.actions';
+import { ToppingsLoad, ToppingsLoaded } from './actions';
 import { ToppingEffects } from './topping.effects';
 
 describe('Topping Effects', () => {

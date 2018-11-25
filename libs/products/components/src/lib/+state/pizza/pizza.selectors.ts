@@ -10,8 +10,6 @@ const getPizzaState = (state: ProductState) => state.pizzas;
 
 // get the selectors
 const {
-    // select the array of entities
-    selectAll,
     // select the dictionary of entities
     selectEntities,
 } = pizzaAdapter.getSelectors();
@@ -23,10 +21,12 @@ const getLoaded = (state: PizzaState) => state.loaded;
 // Lookup the 'Product' feature state managed by NgRx
 const selectProductState = createFeatureSelector<ProductState>(PRODUCT_FEATURE_KEY);
 
-type RouterState = RouterReducerState<RouterStateUrl<{ pizzaId: string }>>;
+type PizzaRouterStateUrl = RouterStateUrl<{ pizzaId: string }>;
 
 // Lookup the router feature state managed by NgRx
-const getRouterState = createFeatureSelector<RouterState>(ROUTER_FEATURE_KEY);
+const getRouterState = createFeatureSelector<RouterReducerState<PizzaRouterStateUrl>>(
+    ROUTER_FEATURE_KEY
+);
 
 // Lookup the 'Pizza' state managed by NgRx
 const selectPizzaState = createSelector(
@@ -39,15 +39,12 @@ const pizzaEntities = createSelector(
     selectEntities
 );
 
-const defaultRouterState: Partial<RouterStateUrl<{ pizzaId?: string }>> = {
+const defaultRouterState: Partial<PizzaRouterStateUrl> = {
     params: { pizzaId: undefined },
 };
 
 export const pizzaQuery = {
-    getAll: createSelector(
-        selectPizzaState,
-        selectAll
-    ),
+    getAll: pizzaEntities,
     getError: createSelector(
         selectPizzaState,
         getError
@@ -59,6 +56,6 @@ export const pizzaQuery = {
     getSelected: createSelector(
         pizzaEntities,
         getRouterState,
-        (pizzas, router) => pizzas[(router.state || defaultRouterState).params.pizzaId]
+        (pizzas, { state = defaultRouterState }) => pizzas[state.params.pizzaId]
     ),
 };

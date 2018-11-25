@@ -12,7 +12,7 @@ import { ProductsFacade } from './product.facade';
 import { PRODUCT_FEATURE_KEY } from './product.feature-key';
 import { productInitialState } from './product.initial-state';
 import { productReducers } from './product.reducer';
-import { ToppingsLoaded } from './topping/topping.actions';
+import { ToppingsLoaded } from './topping/actions';
 
 interface TestSchema {
     productsComponents: ProductState;
@@ -66,7 +66,7 @@ describe('Product Facade', () => {
                 let list = await readFirst(facade.allPizzas$);
                 let isLoaded = await readFirst(facade.pizzasLoaded$);
 
-                expect(list.length).toBe(0);
+                expect(Reflect.ownKeys(list).length).toBe(0);
                 expect(isLoaded).toBe(false);
 
                 facade.loadPizzas();
@@ -74,7 +74,7 @@ describe('Product Facade', () => {
                 list = await readFirst(facade.allPizzas$);
                 isLoaded = await readFirst(facade.pizzasLoaded$);
 
-                expect(list.length).toBe(3);
+                expect(Reflect.ownKeys(list).length).toBe(3);
                 expect(isLoaded).toBe(true);
 
                 done();
@@ -91,7 +91,7 @@ describe('Product Facade', () => {
                 let list = await readFirst(facade.allToppings$);
                 let isLoaded = await readFirst(facade.toppingsLoaded$);
 
-                expect(list.length).toBe(0);
+                expect(Reflect.ownKeys(list).length).toBe(0);
                 expect(isLoaded).toBe(false);
 
                 facade.loadToppings();
@@ -99,7 +99,7 @@ describe('Product Facade', () => {
                 list = await readFirst(facade.allToppings$);
                 isLoaded = await readFirst(facade.toppingsLoaded$);
 
-                expect(list.length).toBe(12);
+                expect(Reflect.ownKeys(list).length).toBe(12);
                 expect(isLoaded).toBe(true);
 
                 done();
@@ -116,7 +116,7 @@ describe('Product Facade', () => {
                 let list = await readFirst(facade.allPizzas$);
                 let isLoaded = await readFirst(facade.pizzasLoaded$);
 
-                expect(list.length).toBe(0);
+                expect(Reflect.ownKeys(list).length).toBe(0);
                 expect(isLoaded).toBe(false);
 
                 const pizzas = [createEntity('AAA'), createEntity('BBB')];
@@ -126,7 +126,7 @@ describe('Product Facade', () => {
                 list = await readFirst(facade.allPizzas$);
                 isLoaded = await readFirst(facade.pizzasLoaded$);
 
-                expect(list.length).toBe(2);
+                expect(Reflect.ownKeys(list).length).toBe(2);
                 expect(isLoaded).toBe(true);
 
                 done();
@@ -143,7 +143,7 @@ describe('Product Facade', () => {
                 let list = await readFirst(facade.allToppings$);
                 let isLoaded = await readFirst(facade.toppingsLoaded$);
 
-                expect(list.length).toBe(0);
+                expect(Reflect.ownKeys(list).length).toBe(0);
                 expect(isLoaded).toBe(false);
 
                 const toppings = [createEntity('AAA'), createEntity('BBB')];
@@ -153,7 +153,7 @@ describe('Product Facade', () => {
                 list = await readFirst(facade.allToppings$);
                 isLoaded = await readFirst(facade.toppingsLoaded$);
 
-                expect(list.length).toBe(2);
+                expect(Reflect.ownKeys(list).length).toBe(2);
                 expect(isLoaded).toBe(true);
 
                 done();

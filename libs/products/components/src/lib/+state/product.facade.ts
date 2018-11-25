@@ -2,11 +2,16 @@ import { Injectable } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { Pizza, ProductPartialState } from '@uap/products/models';
 
-import { PizzaCreate, PizzaRemove, PizzaSelect, PizzasLoad, PizzaUpdate } from './pizza/actions';
-import { pizzaQuery } from './pizza/pizza.selectors';
+import {
+    PizzaCreate,
+    pizzaQuery,
+    PizzaRemove,
+    PizzaSelect,
+    PizzasLoad,
+    PizzaUpdate,
+} from './pizza';
 import { productQuery } from './product.selectors';
-import { ToppingsLoad, ToppingsSelect } from './topping/topping.actions';
-import { toppingQuery } from './topping/topping.selectors';
+import { toppingQuery, ToppingsLoad, ToppingsSelect } from './topping';
 
 @Injectable()
 export class ProductsFacade {

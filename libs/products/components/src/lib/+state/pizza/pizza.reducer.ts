@@ -5,10 +5,10 @@ import { PizzaActionsUnion, PizzaActionTypes } from './actions';
 import { pizzaAdapter } from './pizza.adapter';
 import { pizzaInitialState } from './pizza.initial-state';
 
-export function pizzaReducer(
+export const pizzaReducer = (
     state: PizzaState = pizzaInitialState,
     action: PizzaActionsUnion
-): PizzaState {
+): PizzaState => {
     switch (action.type) {
         case PizzaActionTypes.PizzaCreate: {
             const id = getNextId(state.entities);
@@ -54,4 +54,4 @@ export function pizzaReducer(
         }
     }
     return state;
-}
+};

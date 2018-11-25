@@ -1,10 +1,8 @@
 import { Pizza, PizzaState, Topping, ToppingState } from '@uap/products/models';
 
-import { PizzasLoaded } from './pizza/actions';
-import { pizzaInitialState } from './pizza/pizza.initial-state';
+import { pizzaInitialState, PizzasLoaded } from './pizza';
 import { productReducers } from './product.reducer';
-import { ToppingsLoaded } from './topping/topping.actions';
-import { toppingInitialState } from './topping/topping.initial-state';
+import { toppingInitialState, ToppingsLoaded } from './topping';
 
 describe('Product Reducer', () => {
     const getEntityId = it => it['id'];

@@ -4,17 +4,17 @@ import { RouterStateUrl } from '@uap/state';
 
 export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
     public serialize(routerState: RouterStateSnapshot): RouterStateUrl {
-        let route = routerState.root;
-
-        while (route.firstChild) {
-            route = route.firstChild;
-        }
-
         const {
             url,
             root: { queryParams },
         } = routerState;
-        const { params } = route;
+
+        let state = routerState.root;
+        while (state.firstChild) {
+            state = state.firstChild;
+        }
+
+        const { params } = state;
 
         // Only return an object including the URL, params and query params
         // instead of the entire snapshot

@@ -1,10 +1,10 @@
-import { PizzaCreate } from './pizza-create';
-import { PizzaRemove } from './pizza-remove';
-import { PizzaSelect } from './pizza-select';
-import { PizzaUpdate } from './pizza-update';
-import { PizzasLoad } from './pizzas-load';
-import { PizzasLoadError } from './pizzas-load-error';
-import { PizzasLoaded } from './pizzas-loaded';
+import { PizzaCreate } from './pizza-create.action';
+import { PizzaRemove } from './pizza-remove.action';
+import { PizzaSelect } from './pizza-select.action';
+import { PizzaUpdate } from './pizza-update.action';
+import { PizzasLoad } from './pizzas-load.action';
+import { PizzasLoadError } from './pizzas-load-error.action';
+import { PizzasLoaded } from './pizzas-loaded.action';
 
 export type PizzaActionsUnion =
     | PizzaCreate

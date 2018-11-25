@@ -3,29 +3,10 @@ import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import { DataPersistence } from '@nrwl/nx';
 import { ProductPartialState } from '@uap/products/models';
-import { OperatorFunction } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 
 import { PRODUCT_FEATURE_KEY } from '../product.feature-key';
-import {
-    ToppingActionTypes,
-    ToppingsLoad,
-    ToppingsLoaded,
-    ToppingsLoadError,
-} from './topping.actions';
-
-type OfTypeType = <
-    V extends Extract<
-        U,
-        {
-            type: T1;
-        }
-    >,
-    T1 extends string = string,
-    U extends Action = Action
->(
-    t1: T1
-) => OperatorFunction<U, V>;
+import { ToppingActionTypes, ToppingsLoad, ToppingsLoaded, ToppingsLoadError } from './actions';
 
 @Injectable()
 export class ToppingEffects {

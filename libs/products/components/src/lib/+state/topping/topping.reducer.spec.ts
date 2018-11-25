@@ -1,6 +1,6 @@
 import { Topping, ToppingState } from '@uap/products/models';
 
-import { ToppingsLoaded } from './topping.actions';
+import { ToppingsLoaded } from './actions';
 import { toppingInitialState } from './topping.initial-state';
 import { toppingReducer } from './topping.reducer';
 
