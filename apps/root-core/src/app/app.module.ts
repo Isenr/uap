@@ -6,20 +6,20 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { NxModule } from '@nrwl/nx';
 import { ROUTER_FEATURE_KEY } from '@uap/state';
-import { storeFreeze } from 'ngrx-store-freeze';
 
 import { environment } from '../environments/environment';
-import { CustomSerializer, rootReducers } from './+state';
+import { CustomSerializer, metaReducers, rootReducers } from './+state';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './containers/app/app.component';
 
-const metaReducers = !environment.production ? [storeFreeze] : [];
+const devTools = !environment.production ? StoreDevtoolsModule.instrument() : [];
 
 @NgModule({
     bootstrap: [AppComponent],
     declarations: [AppComponent],
     imports: [
         AppRoutingModule,
+
         BrowserModule,
 
         NxModule.forRoot(),
@@ -66,7 +66,7 @@ const metaReducers = !environment.production ? [storeFreeze] : [];
          *
          * See: https://github.com/zalmoxisus/redux-devtools-extension
          */
-        !environment.production ? StoreDevtoolsModule.instrument() : [],
+        devTools,
     ],
     providers: [],
 })
