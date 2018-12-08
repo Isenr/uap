@@ -7,9 +7,8 @@ import { storeFreeze } from 'ngrx-store-freeze';
 
 import { environment } from '../../environments/environment';
 
-export const rootReducers: ActionReducerMap<RootCoreState> = {
-    [ROUTER_FEATURE_KEY]: routerReducer,
-};
+export const rootReducers = {} as ActionReducerMap<RootCoreState>;
+rootReducers[ROUTER_FEATURE_KEY] = routerReducer;
 
 export const reducerToken = new InjectionToken<ActionReducerMap<RootCoreState>>(
     'Registered Reducers'
