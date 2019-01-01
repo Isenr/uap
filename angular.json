@@ -261,7 +261,7 @@
                     "options": {
                         "main": "libs/root-core/models/src/test.ts",
                         "tsConfig": "libs/root-core/models/tsconfig.spec.json",
-                        "karmaConfig": "libs/root-core/models/karma.conf.js"
+                        "karmaConfig": "libs/root-core/models/karma.conf.ts"
                     }
                 },
                 "lint": {

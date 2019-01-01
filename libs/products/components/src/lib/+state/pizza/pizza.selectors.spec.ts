@@ -1,4 +1,5 @@
 import { Pizza, ProductPartialState } from '@uap/products/models';
+import { dictionaryToArray } from '@uap/utils';
 
 import { PRODUCT_FEATURE_KEY } from '../product.feature-key';
 import { toppingInitialState } from '../topping/topping.initial-state';
@@ -49,7 +50,7 @@ describe('Pizza Selectors', () => {
 
     describe('Pizzas Selectors', () => {
         it('getAll() should return the list of Pizzas', () => {
-            const results = pizzaQuery.getAll(storeState);
+            const results = dictionaryToArray(pizzaQuery.getAll(storeState));
             const selId = getPizzaId(results[1]);
 
             expect(results.length).toBe(3);

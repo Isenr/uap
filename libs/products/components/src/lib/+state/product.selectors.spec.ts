@@ -1,4 +1,6 @@
+import { RouterReducerState } from '@ngrx/router-store';
 import { Pizza, ProductPartialState, Topping } from '@uap/products/models';
+import { ROUTER_FEATURE_KEY, RouterStateUrl } from '@uap/state';
 
 import { PRODUCT_FEATURE_KEY } from './product.feature-key';
 import { productQuery } from './product.selectors';
@@ -20,7 +22,9 @@ describe('Product Selectors', () => {
             {}
         );
 
-    let storeState: ProductPartialState;
+    let storeState: ProductPartialState & {
+        [ROUTER_FEATURE_KEY]: Partial<RouterReducerState<RouterStateUrl<{ pizzaId: string }>>>;
+    };
     let selectedPizzaId: string;
     let selectedToppingIds: string[];
 
@@ -46,6 +50,15 @@ describe('Product Selectors', () => {
                     ids: [...toppingIds],
                     loaded: true,
                     selectedIds: selectedToppingIds,
+                },
+            },
+            [ROUTER_FEATURE_KEY]: {
+                state: {
+                    params: {
+                        pizzaId: selectedPizzaId,
+                    },
+                    queryParams: null,
+                    url: null,
                 },
             },
         };

@@ -8,28 +8,28 @@
         "nx.json": "*"
     },
     "projects": {
-        "root-core": {
-            "tags": []
-        },
-        "root-core-e2e": {
-            "tags": []
-        },
-        "products-models": {
-            "tags": []
-        },
         "products-services": {
             "tags": []
         },
         "products-components": {
             "tags": []
         },
-        "utils": {
-            "tags": ["framework:none"]
+        "root-core": {
+            "tags": []
+        },
+        "root-core-e2e": {
+            "tags": []
+        },
+        "root-core-models": {
+            "tags": []
+        },
+        "products-models": {
+            "tags": []
         },
         "state": {
             "tags": []
         },
-        "root-core-models": {
+        "utils": {
             "tags": []
         }
     }
