@@ -4,10 +4,10 @@ import { ToppingActionsUnion, ToppingActionTypes } from './actions';
 import { toppingAdapter } from './topping.adapter';
 import { toppingInitialState } from './topping.initial-state';
 
-export const toppingReducer = (
+export function toppingReducer(
     state: ToppingState = toppingInitialState,
     action: ToppingActionsUnion
-): ToppingState => {
+): ToppingState {
     switch (action.type) {
         case ToppingActionTypes.ToppingsLoaded: {
             state = {
@@ -25,4 +25,4 @@ export const toppingReducer = (
         }
     }
     return state;
-};
+}
