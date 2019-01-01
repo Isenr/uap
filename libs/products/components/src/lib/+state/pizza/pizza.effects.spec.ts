@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { provideMockActions } from '@ngrx/effects/testing';
 import { ActionReducerMap, combineReducers, StoreModule } from '@ngrx/store';
@@ -23,11 +24,12 @@ describe('Pizza Effects', () => {
         };
         TestBed.configureTestingModule({
             imports: [
+                EffectsModule.forRoot([]),
                 NxModule.forRoot(),
+                RouterTestingModule,
                 StoreModule.forRoot(reducers, {
                     initialState: { [PRODUCT_FEATURE_KEY]: productInitialState },
                 }),
-                EffectsModule.forRoot([]),
             ],
             providers: [PizzaEffects, DataPersistence, provideMockActions(() => actions)],
         });

@@ -1,6 +1,7 @@
 import { async, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ObjectValuePipe } from '@uap/utils';
 import { of } from 'rxjs';
 
 import { ProductsFacade } from '../../+state';
@@ -13,6 +14,7 @@ describe('ProductItemComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
+                ObjectValuePipe,
                 PizzaDisplayComponent,
                 PizzaFormComponent,
                 PizzaToppingsComponent,
