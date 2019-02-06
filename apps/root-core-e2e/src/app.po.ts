@@ -6,6 +6,6 @@ export class AppPage {
     }
 
     public getParagraphText() {
-        return element(by.css('uap-root h1')).getText();
+        return element(by.css('.app__footer p')).getText();
     }
 }
