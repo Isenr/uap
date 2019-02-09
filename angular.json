@@ -102,7 +102,7 @@
                 "e2e": {
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
-                        "protractorConfig": "apps/root-core-e2e/protractor.conf.ts",
+                        "protractorConfig": "apps/root-core-e2e/protractor.runner.js",
                         "devServerTarget": "root-core:serve"
                     },
                     "configurations": {
