@@ -22,6 +22,7 @@
     "lint": "yarn nx lint && yarn ng lint",
     "start": "yarn ng serve",
     "test": "yarn ng test",
+    "test:prod": "yarn ng test --watch=false",
     "update": "yarn ng update @nrwl/schematics",
     "update:check": "yarn ng update",
     "workspace-schematic": "yarn nx workspace-schematic"
