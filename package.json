@@ -12,6 +12,7 @@
         "affected:lint": "yarn nx affected:lint",
         "affected:dep-graph": "yarn nx affected:dep-graph",
         "build": "yarn ng build",
+        "build:prod": "yarn ng build --prod",
         "commit": "yarn git-cz",
         "dep-graph": "yarn nx dep-graph",
         "e2e": "yarn ng e2e",
@@ -22,6 +23,7 @@
         "lint": "yarn nx lint && yarn ng lint",
         "start": "yarn ng serve",
         "test": "yarn ng test",
+        "test:prod": "yarn ng test --watch=false",
         "update": "yarn ng update @nrwl/schematics",
         "update:check": "yarn ng update",
         "workspace-schematic": "yarn nx workspace-schematic"
