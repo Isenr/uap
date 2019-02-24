@@ -1,10 +1,10 @@
 import { async, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ObjectValuePipe } from '@uap/utils';
+import { ProductsFacade } from '@uap/products/state';
+import { ObjectValuePipeModule } from '@uap/utils';
 import { of } from 'rxjs';
 
-import { ProductsFacade } from '../../+state';
 import { PizzaDisplayComponent } from '../../components/pizza-display/pizza-display.component';
 import { PizzaFormComponent } from '../../components/pizza-form/pizza-form.component';
 import { PizzaToppingsComponent } from '../../components/pizza-toppings/pizza-toppings.component';
@@ -14,13 +14,12 @@ describe('ProductItemComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
-                ObjectValuePipe,
                 PizzaDisplayComponent,
                 PizzaFormComponent,
                 PizzaToppingsComponent,
                 ProductItemComponent,
             ],
-            imports: [ReactiveFormsModule, RouterTestingModule],
+            imports: [ObjectValuePipeModule, ReactiveFormsModule, RouterTestingModule],
             providers: [
                 {
                     provide: ProductsFacade,

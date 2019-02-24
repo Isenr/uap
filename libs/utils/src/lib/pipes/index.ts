@@ -1,1 +1,1 @@
-export * from './object-value/object-value.pipe';
+export * from './object-value/object-value.pipe.module';

@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-
-import { ProductsFacade } from '../../+state';
+import { ProductsFacade } from '@uap/products/state';
 
 @Component({
     selector: 'uap-products',

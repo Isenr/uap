@@ -1,64 +1,52 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { ObjectValuePipe } from '@uap/utils';
+import { BackendModule } from '@uap/backend';
+import { effects, PRODUCT_FEATURE_KEY, productReducers } from '@uap/products/state';
+import { ObjectValuePipeModule } from '@uap/utils';
 
-import {
-    effects,
-    PRODUCT_FEATURE_KEY,
-    productInitialState,
-    productReducers,
-    ProductsFacade,
-} from './+state';
 import {
     PizzaDisplayComponent,
     PizzaFormComponent,
     PizzaItemComponent,
     PizzaToppingsComponent,
 } from './components';
-import { ProductItemComponent, ProductsComponent } from './containers';
-import { ProductComponentsResolver } from './resolvers';
-
-export const ROUTES: Routes = [
-    {
-        component: ProductsComponent,
-        path: '',
-        resolve: { data: ProductComponentsResolver },
-    },
-    {
-        component: ProductItemComponent,
-        path: 'new',
-        resolve: { data: ProductComponentsResolver },
-    },
-    {
-        component: ProductItemComponent,
-        path: ':pizzaId',
-        resolve: { data: ProductComponentsResolver },
-    },
-];
+import { ProductItemComponent, ProductsComponent, ProductsWrapperComponent } from './containers';
+import { ProductsComponentsRoutingModule } from './products-components-routing.module';
 
 @NgModule({
     declarations: [
-        ObjectValuePipe,
         PizzaDisplayComponent,
         PizzaFormComponent,
         PizzaItemComponent,
         PizzaToppingsComponent,
         ProductsComponent,
         ProductItemComponent,
+        ProductsWrapperComponent,
     ],
     imports: [
+        // #region application imports
+        BackendModule,
+
+        ObjectValuePipeModule,
+
+        ProductsComponentsRoutingModule,
+        // #endregion application imports
+
+        // #region angular imports
         CommonModule,
+
         ReactiveFormsModule,
-        RouterModule.forChild(ROUTES),
-        StoreModule.forFeature(PRODUCT_FEATURE_KEY, productReducers, {
-            initialState: productInitialState,
-        }),
+        // #endregion angular imports
+
+        // #region ngrx imports
         EffectsModule.forFeature([...effects]),
+
+        StoreModule.forFeature(PRODUCT_FEATURE_KEY, productReducers),
+        // #endregion ngrx imports
     ],
-    providers: [ProductComponentsResolver, ProductsFacade],
+    providers: [],
 })
 export class ProductsComponentsModule {}

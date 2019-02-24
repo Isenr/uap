@@ -1,9 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Resolve } from '@angular/router';
+import { ProductsFacade } from '@uap/products/state';
 
-import { ProductsFacade } from '../+state';
-
-@Injectable()
+@Injectable({
+    providedIn: 'root',
+})
 export class ProductComponentsResolver implements Resolve<void> {
     constructor(public productsFacade: ProductsFacade) {}
 

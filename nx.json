@@ -8,22 +8,25 @@
         "nx.json": "*"
     },
     "projects": {
-        "products-services": {
+        "auth": {
+            "tags": []
+        },
+        "backend": {
             "tags": []
         },
         "products-components": {
+            "tags": []
+        },
+        "products-models": {
+            "tags": []
+        },
+        "products-state": {
             "tags": []
         },
         "root-core": {
             "tags": []
         },
         "root-core-e2e": {
-            "tags": []
-        },
-        "root-core-models": {
-            "tags": []
-        },
-        "products-models": {
             "tags": []
         },
         "state": {
