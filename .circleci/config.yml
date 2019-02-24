@@ -56,7 +56,7 @@ jobs:
                 name: Install Firebase
                 command: yarn add firebase-tools --dev
             - run:
-                name: Deploy dev/firebase to Firebase
+                name: Deploy master to Firebase
                 command: yarn firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
 workflows:
@@ -69,4 +69,4 @@ workflows:
                 - build
             filters:
                 branches:
-                    only: dev/firebase
+                    only: master
