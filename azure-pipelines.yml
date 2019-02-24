@@ -18,7 +18,8 @@ steps:
 
 - script: |
     yarn install
-    yarn build --prod
-    yarn test
+    yarn format:check
     yarn lint
+    yarn build:prod
+    yarn test:prod
   displayName: 'yarn install and build'

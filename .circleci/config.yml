@@ -26,6 +26,9 @@ jobs:
                 name: Linting
                 command: yarn lint
             - run:
+                name: Formatting
+                command: yarn format:check
+            - run:
                 name: Testing
                 command: yarn test:prod
             - run:

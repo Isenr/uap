@@ -21,6 +21,7 @@
         "format:check": "yarn nx format:check",
         "help": "yarn nx help",
         "lint": "yarn nx lint && yarn ng lint",
+        "precommit": "yarn format:check && yarn lint",
         "start": "yarn ng serve",
         "test": "yarn ng test",
         "test:prod": "yarn ng test --watch=false",
