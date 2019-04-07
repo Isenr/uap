@@ -5,7 +5,6 @@
         (click)="selectTopping(topping)"
         [class.active]="existsInToppings(topping)"
     >
-        <img src="/assets/img/toppings/singles/{{ topping.name }}.svg" />
-        {{ topping.name }}
+        <img src="/assets/img/toppings/singles/{{ topping.name }}.svg" /> {{ topping.name }}
     </div>
 </div>

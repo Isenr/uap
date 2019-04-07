@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { ModuleWithProviders, NgModule, Optional, SkipSelf } from '@angular/core';
 import { AngularFireModule, FirebaseOptions } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
+import { Config as NgOidcClientConfig, NgOidcClientModule } from 'ng-oidc-client';
 
 import { LoginComponent } from './components';
 import { AuthProvider } from './models';
@@ -11,18 +12,48 @@ export { LoginComponent } from './components';
 export { AuthGuard } from './guards';
 export { AuthProvider } from './models';
 
-export function authImports(environment: { firebase: FirebaseOptions }) {
-    // imports firebase/auth needed for auth features,
-    return [AngularFireAuthModule, AngularFireModule.initializeApp(environment.firebase)];
-}
-
-export function authProviders() {
-    return [{ provide: AuthProvider, useExisting: FirebaseAuthService }];
+export function authImports({
+    auth,
+}: {
+    auth: {
+        firebase: FirebaseOptions;
+        ngOidc: NgOidcClientConfig;
+        provider: string;
+    };
+}) {
+    return auth.provider === 'firebase'
+        ? [AngularFireAuthModule, AngularFireModule.initializeApp(auth.firebase)]
+        : auth.provider === 'ng-oidc'
+        ? [NgOidcClientModule.forRoot(auth.ngOidc)]
+        : [];
 }
 
 @NgModule({
     declarations: [LoginComponent],
     imports: [CommonModule],
-    providers: [authProviders()],
 })
-export class AuthModule {}
+export class AuthModule {
+    constructor(@Optional() @SkipSelf() parentModule: AuthModule) {
+        if (parentModule) {
+            throw new Error('AuthModule is already loaded. Import it in the AppModule only');
+        }
+    }
+
+    public static forRoot({
+        auth: { provider },
+    }: {
+        auth: {
+            firebase: FirebaseOptions;
+            ngOidc: NgOidcClientConfig;
+            provider: string;
+        };
+    }): ModuleWithProviders {
+        return {
+            ngModule: AuthModule,
+            providers:
+                provider === 'firebase'
+                    ? [{ provide: AuthProvider, useExisting: FirebaseAuthService }]
+                    : [],
+        };
+    }
+}

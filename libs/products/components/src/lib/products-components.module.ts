@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
-import { BackendModule } from '@uap/backend';
 import { effects, PRODUCT_FEATURE_KEY, productReducers } from '@uap/products/state';
 import { ObjectValuePipeModule } from '@uap/utils';
 
@@ -28,8 +27,6 @@ import { ProductsComponentsRoutingModule } from './products-components-routing.m
     ],
     imports: [
         // #region application imports
-        BackendModule,
-
         ObjectValuePipeModule,
 
         ProductsComponentsRoutingModule,

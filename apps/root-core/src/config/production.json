@@ -1,0 +1,37 @@
+{
+    "auth": {
+        "firebase": {
+            "apiKey": "<firebase_apiKey>",
+            "authDomain": "<firebase_authDomain>",
+            "databaseURL": "<firebase_databaseURL>",
+            "messagingSenderId": "<firebase_messagingSenderId>",
+            "projectId": "<firebase_projectId>",
+            "storageBucket": "<firebase_storageBucket>"
+        },
+        "ngOidc": {
+            "oidc_config": {
+                "authority": "<oidc_authority>",
+                "automaticSilentRenew": true,
+                "client_id": "<oidc_client_id>",
+                "post_logout_redirect_uri": "<oidc_post_logout_redirect_uri>",
+                "redirect_uri": "<oidc_redirect_uri>",
+                "response_type": "<oidc_response_type>",
+                "scope": "<oidc_scope>",
+                "silent_redirect_uri": "<oidc_silent_redirect_uri>"
+            }
+        },
+        "provider": "<auth_provider>"
+    },
+    "backend": {
+        "firebase": {
+            "apiKey": "<firebase_apiKey>",
+            "authDomain": "<firebase_authDomain>",
+            "databaseURL": "<firebase_databaseURL>",
+            "messagingSenderId": "<firebase_messagingSenderId>",
+            "projectId": "<firebase_projectId>",
+            "storageBucket": "<firebase_storageBucket>"
+        },
+        "provider": "<backend_provider>"
+    },
+    "production": true
+}

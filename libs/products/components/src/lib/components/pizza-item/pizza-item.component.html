@@ -1,11 +1,7 @@
 <div class="pizza-item">
     <a [routerLink]="['/products', pizza.id]">
         <uap-pizza-display [pizza]="pizza"></uap-pizza-display>
-        <h4>
-            {{ pizza.name }}
-        </h4>
-        <button type="button" class="btn btn__ok">
-            View Pizza
-        </button>
+        <h4>{{ pizza.name }}</h4>
+        <button type="button" class="btn btn__ok">View Pizza</button>
     </a>
 </div>

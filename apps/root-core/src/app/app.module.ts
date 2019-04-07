@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NxModule } from '@nrwl/nx';
 import { authImports, AuthModule } from '@uap/auth';
-import { backendImports, backendProviders } from '@uap/backend';
+import { backendImports, BackendModule } from '@uap/backend';
 import { stateImports } from '@uap/state';
 
 import { environment } from '../environments/environment';
@@ -16,8 +16,6 @@ import { AppComponent } from './containers/app/app.component';
     imports: [
         // #region application imports
         AppRoutingModule,
-
-        AuthModule,
         // #endregion application imports
 
         // #region angular imports
@@ -27,10 +25,12 @@ import { AppComponent } from './containers/app/app.component';
         // #endregion angular imports
 
         // #region auth imports
+        AuthModule.forRoot(environment),
         ...authImports(environment),
         // #endregion auth imports
 
         // #region backend imports
+        BackendModule.forRoot(environment),
         ...backendImports(environment),
         // #endregion backend imports
 
@@ -42,6 +42,5 @@ import { AppComponent } from './containers/app/app.component';
         ...stateImports(environment),
         // #endregion management imports
     ],
-    providers: [...backendProviders()],
 })
 export class AppModule {}
