@@ -33,7 +33,10 @@ jobs:
                 command: yarn test:prod
             - run:
                 name: Set config
-                command: echo $CONFIG_FILE | base64 --decode >> ./apps/root-core/src/config/production.json
+                command: echo $CONFIG_FILE | base64 --decode >> apps/root-core/src/config/production.json
+            - run:
+                name: cat config
+                command: cat apps/root-core/src/config/production.json
             - run:
                 name: Building
                 command: yarn build:prod
