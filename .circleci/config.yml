@@ -32,9 +32,6 @@ jobs:
                 name: Testing
                 command: yarn test:prod
             - run:
-                name: Set config
-                command: echo $CONFIG_FILE | base64 --decode >> apps/root-core/src/config/production.json
-            - run:
                 name: Building
                 command: yarn build:prod
             - save_cache:
