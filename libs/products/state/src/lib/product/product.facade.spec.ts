@@ -5,7 +5,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { Store, StoreModule } from '@ngrx/store';
 import { NxModule } from '@nrwl/nx';
 import { readFirst } from '@nrwl/nx/testing';
-import { Backend } from '@uap/backend';
+import { FirestoreService } from '@uap/backend';
 import { Pizza, ProductState, Topping } from '@uap/products/models';
 import { of } from 'rxjs';
 
@@ -45,7 +45,7 @@ describe('Product Facade', () => {
                 providers: [
                     ProductsFacade,
                     {
-                        provide: Backend,
+                        provide: FirestoreService,
                         useValue: {
                             collection: (collectionName: string) => ({
                                 create() {},

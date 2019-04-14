@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NxModule } from '@nrwl/nx';
-import { authImports, AuthModule } from '@uap/auth';
-import { backendImports, BackendModule } from '@uap/backend';
+import { AuthModule, FirebaseAuthService } from '@uap/auth';
+import { FirestoreService } from '@uap/backend';
 import { stateImports } from '@uap/state';
 
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './containers/app/app.component';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -24,15 +27,17 @@ import { AppComponent } from './containers/app/app.component';
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         // #endregion angular imports
 
-        // #region auth imports
-        AuthModule.forRoot(environment),
-        ...authImports(environment),
-        // #endregion auth imports
+        // #region angularfire imports
+        AngularFireModule.initializeApp(environment.firebase),
 
-        // #region backend imports
-        BackendModule.forRoot(environment),
-        ...backendImports(environment),
-        // #endregion backend imports
+        AngularFireAuthModule,
+
+        AngularFirestoreModule.enablePersistence(),
+        // #endregion angularfire imports
+
+        // #region auth imports
+        AuthModule,
+        // #endregion auth imports
 
         // #region nrwl imports
         NxModule.forRoot(),
@@ -41,6 +46,11 @@ import { AppComponent } from './containers/app/app.component';
         // #region state management imports
         ...stateImports(environment),
         // #endregion management imports
+    ],
+    providers: [
+        FirestoreService,
+        FirebaseAuthService,
+        { provide: FirestoreSettingsToken, useValue: {} },
     ],
 })
 export class AppModule {}

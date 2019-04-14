@@ -1,14 +1,14 @@
 import { inject, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthProvider } from '@uap/auth';
 
+import { FirebaseAuthService } from '../../services';
 import { AuthGuard } from './auth.guard';
 
 describe('AuthGuard', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [RouterTestingModule],
-            providers: [AuthGuard, { provide: AuthProvider, useValue: {} }],
+            providers: [AuthGuard, { provide: FirebaseAuthService, useValue: {} }],
         });
     });
 

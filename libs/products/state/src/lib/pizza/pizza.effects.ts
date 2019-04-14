@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
-import { Backend, BackEndCollection } from '@uap/backend';
+import { BackEndCollection, FirestoreService } from '@uap/backend';
 import { Pizza, ProductPartialState } from '@uap/products/models';
 import { RouterNavigate } from '@uap/state';
 import { Observable } from 'rxjs';
@@ -125,7 +125,7 @@ export class PizzaEffects {
     constructor(
         private actions: Actions<PizzaActionsUnion>,
         private dataPersistence: DataPersistence<ProductPartialState>,
-        backend: Backend<Pizza>
+        backend: FirestoreService<Pizza>
     ) {
         this.collection = backend.collection('pizzas');
     }

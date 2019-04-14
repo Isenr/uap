@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { AuthProvider } from '../../models/auth-provider.model';
+import { FirebaseAuthService } from '../../services';
 
 @Component({
     selector: 'uap-login',
@@ -8,5 +8,5 @@ import { AuthProvider } from '../../models/auth-provider.model';
     templateUrl: './login.component.html',
 })
 export class LoginComponent {
-    constructor(public auth: AuthProvider) {}
+    constructor(public auth: FirebaseAuthService) {}
 }

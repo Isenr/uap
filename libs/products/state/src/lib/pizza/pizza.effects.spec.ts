@@ -5,7 +5,7 @@ import { provideMockActions } from '@ngrx/effects/testing';
 import { ActionReducerMap, combineReducers, StoreModule } from '@ngrx/store';
 import { DataPersistence, NxModule } from '@nrwl/nx';
 import { hot } from '@nrwl/nx/testing';
-import { Backend } from '@uap/backend';
+import { FirestoreService } from '@uap/backend';
 import { ProductPartialState } from '@uap/products/models';
 import { Observable, of } from 'rxjs';
 
@@ -37,7 +37,7 @@ describe('Pizza Effects', () => {
                 DataPersistence,
                 provideMockActions(() => actions),
                 {
-                    provide: Backend,
+                    provide: FirestoreService,
                     useValue: {
                         collection: () => ({
                             create() {},

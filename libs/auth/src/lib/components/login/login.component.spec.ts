@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { AuthProvider } from '../../models';
+import { FirebaseAuthService } from '../../services';
 import { LoginComponent } from './login.component';
 
 describe('LoginComponent', () => {
@@ -12,7 +12,7 @@ describe('LoginComponent', () => {
         TestBed.configureTestingModule({
             declarations: [LoginComponent],
             imports: [RouterTestingModule],
-            providers: [{ provide: AuthProvider, useValue: {} }],
+            providers: [{ provide: FirebaseAuthService, useValue: {} }],
         }).compileComponents();
     }));
 

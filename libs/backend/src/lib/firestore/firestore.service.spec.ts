@@ -6,7 +6,7 @@ import { FirestoreService } from './firestore.service';
 describe('FirestoreService', () => {
     beforeEach(() =>
         TestBed.configureTestingModule({
-            providers: [{ provide: AngularFirestore, useValue: {} }],
+            providers: [FirestoreService, { provide: AngularFirestore, useValue: {} }],
         })
     );
 

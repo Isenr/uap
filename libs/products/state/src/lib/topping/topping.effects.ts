@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/nx';
-import { Backend, BackEndCollection } from '@uap/backend';
+import { BackEndCollection, FirestoreService } from '@uap/backend';
 import { ProductPartialState, Topping } from '@uap/products/models';
 import { Observable } from 'rxjs/internal/Observable';
 import { map } from 'rxjs/operators';
@@ -45,7 +45,7 @@ export class ToppingEffects {
     constructor(
         private actions$: Actions,
         private dataPersistence: DataPersistence<ProductPartialState>,
-        backend: Backend<Topping>
+        backend: FirestoreService<Topping>
     ) {
         this.collection = backend.collection('toppings');
     }

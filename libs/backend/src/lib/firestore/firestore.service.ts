@@ -3,11 +3,9 @@ import { AngularFirestore, DocumentChangeAction } from '@angular/fire/firestore'
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
-import { Backend } from '../models/backend.model';
+import { Backend } from '../models';
 
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class FirestoreService<T extends { id?: string }> extends Backend<T> {
     constructor(private readonly angularFirestore: AngularFirestore) {
         super();
