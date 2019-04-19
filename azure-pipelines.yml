@@ -31,9 +31,6 @@ steps:
 - script: yarn test:prod
   displayName: 'yarn test:prod'
 
-- script: yarn e2e
-  displayName: 'yarn e2e'
-
 - task: PublishPipelineArtifact@0
   inputs:
     targetPath: 'dist/apps/root-core'
