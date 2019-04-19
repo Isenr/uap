@@ -11,9 +11,10 @@ version: 0.2
 phases:
   install:
     commands:
-      - yarn
+      - npm install -g yarn
   pre_build:
     commands:
+      - yarn install
       - yarn lint
       - yarn format:check
       - yarn test:prod
