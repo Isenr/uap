@@ -1,32 +1,35 @@
 version: 0.2
 
-#env:
+env:
   #variables:
      # key: "value"
      # key: "value"
-  #parameter-store:
-     # key: "value"
+  parameter-store:
+      firebaseenvironmentfile: "firebaseenvironmentfile"
      # key: "value"
 
 phases:
   install:
     commands:
-      - npm install -g yarn
+       - npm i -g yarn
+      # - command
   pre_build:
     commands:
-      - yarn install
+       - yarn install
+       - echo ${firebaseenvironmentfile} | base64 --decode > apps/root-core/src/environments/environment.prod.ts
   build:
     commands:
-      - yarn build:prod
+       - yarn build:prod
+      # - command
   #post_build:
     #commands:
       # - command
       # - command
 artifacts:
   files:
-    - '**/*'
+     - '**/*'
     # - location
-  # name: $(date +%Y-%m-%d)
+  #name: $(date +%Y-%m-%d)
   #discard-paths: yes
   base-directory: 'dist/apps/root-core'
 #cache:
