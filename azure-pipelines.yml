@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: ubuntu-16.04
 
 steps:
 - task: NodeTool@0
@@ -16,10 +16,24 @@ steps:
     checkLatest: true
   displayName: 'Use Yarn 1.x'
 
-- script: |
-    yarn install
-    yarn format:check
-    yarn lint
-    yarn build:prod
-    yarn test:prod
-  displayName: 'yarn install and build'
+- script: yarn install
+  displayName: 'yarn install'
+
+- script: yarn format:check
+  displayName: 'yarn format:check'
+
+- script: yarn lint
+  displayName: 'yarn lint'
+
+- script: yarn build:prod
+  displayName: 'yarn build:prod'
+
+- script: yarn test:prod
+  displayName: 'yarn test:prod'
+
+- script: yarn e2e
+  displayName: 'yarn e2e'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    targetPath: 'dist/apps/root-core'
