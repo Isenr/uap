@@ -1,0 +1,36 @@
+version: 0.2
+
+#env:
+  #variables:
+     # key: "value"
+     # key: "value"
+  #parameter-store:
+     # key: "value"
+     # key: "value"
+
+phases:
+  install:
+    commands:
+      - yarn
+  pre_build:
+    commands:
+      - yarn lint
+      - yarn format:check
+      - yarn test:prod
+  build:
+    commands:
+      - yarn build:prod
+  #post_build:
+    #commands:
+      # - command
+      # - command
+artifacts:
+  files:
+    - '**/*'
+    # - location
+  # name: $(date +%Y-%m-%d)
+  #discard-paths: yes
+  base-directory: 'dist/apps/root-core'
+#cache:
+  #paths:
+    # - paths
