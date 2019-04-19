@@ -24,7 +24,7 @@ jobs:
                     - node_modules
             - run:
                 name: Insert Firebase environment file
-                command: echo $FIREBASE_ENVIRONMENT_FILE | base64 --decode > environment.prod.ts
+                command: echo $FIREBASE_ENVIRONMENT_FILE | base64 --decode > apps/root-core/src/environments/environment.prod.ts
             - run:
                 name: Linting
                 command: yarn lint
