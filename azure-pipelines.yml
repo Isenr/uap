@@ -6,9 +6,6 @@
 pool:
   vmImage: ubuntu-16.04
 
-variables:
-  cacheRestored: false
-
 steps:
 - checkout: self  # self represents the repo where the initial Pipelines YAML file was found
   persistCredentials: 'true'  # set to 'true' to leave the OAuth token in the Git config after the initial fetch
@@ -23,6 +20,13 @@ steps:
     checkLatest: true
   displayName: 'Use Yarn 1.x'
 
+- task: RestoreAndSaveCache@1
+  inputs:
+    keyfile: 'yarn.lock'
+    targetfolder: 'node_modules'
+    vstsFeed: '6654ebf6-4375-4685-93d3-3bfdbecde628'
+
+# BEGIN - PR tasks
 - task: PowerShell@2
   name: setTargetBranchVarStep
   inputs:
@@ -32,9 +36,11 @@ steps:
 
       echo "##vso[task.setvariable variable=targetBranch;isOutput=true]$targetBranch"
     pwsh: true
+  condition: in(variables['Build.Reason'], 'PullRequest')
 
 - script: git checkout $(setTargetBranchVarStep.targetBranch)
   displayName: 'git checkout target branch'
+  condition: and(succeeded(), in(variables['Build.Reason'], 'PullRequest'))
 
 - task: PowerShell@2
   name: setSourceBranchVarStep
@@ -45,32 +51,46 @@ steps:
 
       echo "##vso[task.setvariable variable=sourceBranch;isOutput=true]$sourceBranch"
     pwsh: true
+  condition: and(succeeded(), in(variables['Build.Reason'], 'PullRequest'))
 
 - script: git checkout $(setSourceBranchVarStep.sourceBranch)
   displayName: 'git checkout source branch'
-
-- task: CacheBeta@0
-  displayName: CacheBeta
-  inputs:
-    key: '$(System.DefaultWorkingDirectory)/yarn.lock'
-    path: '$(System.DefaultWorkingDirectory)/node_modules'
-    cacheHitVar: cacheRestored
+  condition: and(succeeded(), in(variables['Build.Reason'], 'PullRequest'))
 
 - script: yarn install
   displayName: 'yarn install'
-  condition: and(succeeded(), ne(variables['cacheRestored'], 'true'))
+  condition: and(succeeded(), ne(variables['CacheRestored'], 'true'))
 
 - script: yarn format:check
   displayName: 'yarn format:check'
+  condition: and(succeeded(), in(variables['Build.Reason'], 'PullRequest'))
 
 - script: yarn affected:lint
   displayName: 'yarn affected:lint'
+  condition: and(succeeded(), in(variables['Build.Reason'], 'PullRequest'))
 
 - script: yarn affected:build --prod
   displayName: 'yarn affected:build --prod'
+  condition: and(succeeded(), in(variables['Build.Reason'], 'PullRequest'))
 
 - script: yarn affected:test
   displayName: 'yarn affected:test'
+  condition: and(succeeded(), in(variables['Build.Reason'], 'PullRequest'))
+# END - PR tasks
+
+# BEGIN - CI tasks
+- script: yarn lint
+  displayName: 'yarn lint'
+  condition: and(succeeded(), not(in(variables['Build.Reason'], 'PullRequest')))
+
+- script: yarn build --prod
+  displayName: 'yarn build --prod'
+  condition: and(succeeded(), not(in(variables['Build.Reason'], 'PullRequest')))
+
+- script: yarn test
+  displayName: 'yarn test --watch=false'
+  condition: and(succeeded(), not(in(variables['Build.Reason'], 'PullRequest')))
+# END - CI tasks
 
 - task: PublishPipelineArtifact@0
   inputs:
