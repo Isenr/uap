@@ -58,7 +58,7 @@ steps:
 
 - script: yarn install
   displayName: 'yarn install'
-  condition: and(succeeded(), neq(variables['cacheRestored'], 'true'))
+  condition: and(succeeded(), ne(variables['cacheRestored'], 'true'))
 
 - script: yarn format:check
   displayName: 'yarn format:check'
