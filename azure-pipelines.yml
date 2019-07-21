@@ -90,8 +90,9 @@ steps:
 - script: yarn test
   displayName: 'yarn test --watch=false'
   condition: and(succeeded(), not(in(variables['Build.Reason'], 'PullRequest')))
-# END - CI tasks
 
 - task: PublishPipelineArtifact@0
   inputs:
     targetPath: 'dist/apps/root-core'
+  condition: and(succeeded(), not(in(variables['Build.Reason'], 'PullRequest')))
+# END - CI tasks
