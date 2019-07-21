@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from '@ngrx/effects';
-import { DataPersistence } from '@nrwl/nx';
+import { DataPersistence } from '@nrwl/angular';
 import { BackEndCollection, FirestoreService } from '@uap/backend';
 import { ProductPartialState, Topping } from '@uap/products/models';
 import { Observable } from 'rxjs/internal/Observable';

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { DataPersistence } from '@nrwl/nx';
+import { DataPersistence } from '@nrwl/angular';
 import { BackEndCollection, FirestoreService } from '@uap/backend';
 import { Pizza, ProductPartialState } from '@uap/products/models';
 import { RouterNavigate } from '@uap/state';

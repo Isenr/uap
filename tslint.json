@@ -31,7 +31,12 @@
         "no-bitwise": true,
         "no-consecutive-blank-lines": [true, 3],
         "no-console": [true, "debug", "info", "time", "timeEnd", "trace"],
-        "no-constant-condition": [true, { "checkLoops": false }],
+        "no-constant-condition": [
+            true,
+            {
+                "checkLoops": false
+            }
+        ],
         "no-construct": true,
         "no-debugger": true,
         "no-duplicate-case": true,
@@ -88,7 +93,6 @@
             "check-separator",
             "check-type"
         ],
-
         "component-class-suffix": [true, "Component"],
         "component-selector": [true, "element", "app", "kebab-case"],
         "directive-class-suffix": [true, "Directive"],
@@ -96,19 +100,20 @@
         "no-input-rename": true,
         "no-output-on-prefix": true,
         "no-output-rename": true,
-        "use-host-property-decorator": true,
-        "use-input-property-decorator": true,
         "use-life-cycle-interface": true,
-        "use-output-property-decorator": true,
         "use-pipe-transform-interface": true,
-
         "nx-enforce-module-boundaries": [
             true,
             {
                 "allow": [],
-                "depConstraints": [{ "sourceTag": "*", "onlyDependOnLibsWithTags": ["*"] }]
+                "depConstraints": [
+                    {
+                        "sourceTag": "*",
+                        "onlyDependOnLibsWithTags": ["*"]
+                    }
+                ]
             }
         ]
     },
-    "rulesDirectory": ["node_modules/codelyzer", "node_modules/@nrwl/schematics/src/tslint"]
+    "rulesDirectory": ["node_modules/codelyzer", "node_modules/@nrwl/workspace/src/tslint"]
 }

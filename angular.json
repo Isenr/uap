@@ -326,7 +326,7 @@
         }
     },
     "cli": {
-        "defaultCollection": "@nrwl/schematics",
+        "defaultCollection": "@nrwl/angular",
         "packageManager": "yarn",
         "warnings": {
             "typescriptMismatch": false,

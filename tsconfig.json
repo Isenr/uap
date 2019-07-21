@@ -23,7 +23,8 @@
             "@uap/products/state": ["libs/products/state/src/index.ts"],
             "@uap/state": ["libs/state/src/index.ts"],
             "@uap/utils": ["libs/utils/src/index.ts"]
-        }
+        },
+        "rootDir": "."
     },
     "exclude": ["node_modules", "tmp"]
 }

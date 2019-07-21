@@ -37,7 +37,7 @@ const devImports = [
      * meta-reducer. This returns all providers for an @ngrx/store
      * based application.
      */
-    StoreModule.forRoot(rootReducers, { metaReducers: metaReducers({ production: false }) }),
+    StoreModule.forRoot(rootReducers, { metaReducers: metaReducers({ production: false }), runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
 
     /**
      * Store devtools instrument the store retaining past versions of state
@@ -62,7 +62,7 @@ const prodImports = [
      * meta-reducer. This returns all providers for an @ngrx/store
      * based application.
      */
-    StoreModule.forRoot(rootReducers, { metaReducers: metaReducers({ production: true }) }),
+    StoreModule.forRoot(rootReducers, { metaReducers: metaReducers({ production: true }), runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true } }),
 ];
 
 export function stateImports({ production }: { production: boolean }) {

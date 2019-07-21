@@ -3,7 +3,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { NxModule } from '@nrwl/nx';
+import { NxModule } from '@nrwl/angular';
 import { AuthModule, FirebaseAuthService } from '@uap/auth';
 import { FirestoreService } from '@uap/backend';
 import { stateImports } from '@uap/state';
