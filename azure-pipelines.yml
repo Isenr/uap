@@ -59,7 +59,7 @@ steps:
   displayName: 'yarn affected:build --prod'
 
 - script: yarn test:prod
-  displayName: 'yarn affected:test --prod'
+  displayName: 'yarn affected:test'
 
 - task: PublishPipelineArtifact@0
   inputs:
