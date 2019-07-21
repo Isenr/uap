@@ -11,7 +11,7 @@ variables:
 
 steps:
 - checkout: self  # self represents the repo where the initial Pipelines YAML file was found
-  persistCredentials: true  # set to 'true' to leave the OAuth token in the Git config after the initial fetch
+  persistCredentials: 'true'  # set to 'true' to leave the OAuth token in the Git config after the initial fetch
 
 - task: NodeTool@0
   inputs:
