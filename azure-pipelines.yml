@@ -52,13 +52,13 @@ steps:
 - script: yarn format:check
   displayName: 'yarn format:check'
 
-- script: yarn lint
+- script: yarn affected:lint
   displayName: 'yarn affected:lint'
 
-- script: yarn build:prod
+- script: yarn affected:build --prod
   displayName: 'yarn affected:build --prod'
 
-- script: yarn test:prod
+- script: yarn affected:test
   displayName: 'yarn affected:test'
 
 - task: PublishPipelineArtifact@0
