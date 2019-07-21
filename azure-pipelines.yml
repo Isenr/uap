@@ -6,6 +6,9 @@
 pool:
   vmImage: ubuntu-16.04
 
+variables:
+  cacheRestored: false
+
 steps:
 - checkout: self  # self represents the repo where the initial Pipelines YAML file was found
   persistCredentials: true  # set to 'true' to leave the OAuth token in the Git config after the initial fetch
@@ -46,8 +49,16 @@ steps:
 - script: git checkout $(setSourceBranchVarStep.sourceBranch)
   displayName: 'git checkout source branch'
 
+- task: CacheBeta@0
+  displayName: CacheBeta
+  inputs:
+    key: '$(System.DefaultWorkingDirectory)/yarn.lock'
+    path: '$(System.DefaultWorkingDirectory)/node_modules'
+    cacheHitVar: cacheRestored
+
 - script: yarn install
   displayName: 'yarn install'
+  condition: and(succeeded(), neq(variables['cacheRestored'], 'true'))
 
 - script: yarn format:check
   displayName: 'yarn format:check'
