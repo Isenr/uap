@@ -27,13 +27,13 @@ jobs:
                 command: echo $FIREBASE_ENVIRONMENT_FILE | base64 --decode > apps/root-core/src/environments/environment.prod.ts
             - run:
                 name: Linting
-                command: yarn lint
+                command: yarn affected:lint
             - run:
                 name: Formatting
                 command: yarn format:check
             - run:
                 name: Testing
-                command: yarn test:prod
+                command: yarn affected:test
             - run:
                 name: Building
                 command: yarn build:prod
