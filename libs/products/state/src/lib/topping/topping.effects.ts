@@ -25,7 +25,7 @@ export class ToppingEffects {
             run: (action: ToppingsLoad, state: ProductPartialState) => {
                 const toppingState = state[PRODUCT_FEATURE_KEY].toppings;
                 if (toppingState.loaded) {
-                    const ids: Array<string | number> = toppingState.ids;
+                    const ids: (string | number)[] = toppingState.ids;
                     return new ToppingsLoadSuccess({
                         toppings: ids.map(id => toppingState.entities[id]),
                     });

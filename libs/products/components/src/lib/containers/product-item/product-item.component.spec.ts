@@ -1,4 +1,4 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ProductsFacade } from '@uap/products/state';
@@ -11,7 +11,7 @@ import { PizzaToppingsComponent } from '../../components/pizza-toppings/pizza-to
 import { ProductItemComponent } from './product-item.component';
 
 describe('ProductItemComponent', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             declarations: [
                 PizzaDisplayComponent,

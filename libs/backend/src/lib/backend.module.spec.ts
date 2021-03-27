@@ -1,9 +1,9 @@
-import { async, TestBed } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
 import { BackendModule } from './backend.module';
 
 describe('BackendModule', () => {
-    beforeEach(async(() => {
+    beforeEach(waitForAsync(() => {
         TestBed.configureTestingModule({
             imports: [BackendModule],
         }).compileComponents();

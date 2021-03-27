@@ -36,7 +36,7 @@ export class PizzaEffects {
             run: (action: PizzasLoad, state: ProductPartialState) => {
                 const pizzaState = state[PRODUCT_FEATURE_KEY].pizzas;
                 if (pizzaState.loaded) {
-                    const ids: Array<string | number> = pizzaState.ids;
+                    const ids: (string | number)[] = pizzaState.ids;
                     return new PizzasLoadSuccess({
                         pizzas: ids.map(id => pizzaState.entities[id]),
                     });

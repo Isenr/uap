@@ -4,7 +4,7 @@ import { Pipe, PipeTransform } from '@angular/core';
     name: 'objectvalue',
 })
 export class ObjectValuePipe<U> implements PipeTransform {
-    private previous: { value: U } | Array<{ value: U }>;
+    private previous: { value: U } | { value: U }[];
     private value: U | U[];
 
     public transform<T extends { value: U }>(input: T): U;
