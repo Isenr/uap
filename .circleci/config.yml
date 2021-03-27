@@ -56,6 +56,9 @@ jobs:
             - restore_cache:
                 key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
             - run:
+                name: Remove postinstall
+                command: sed -i 's/node .\/decorate-angular-cli.js && ngcc --properties es2015 browser module main//' package.json
+            - run:
                 name: Install Firebase
                 command: yarn add firebase-tools --dev
             - run:
