@@ -4,12 +4,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PizzaDisplayComponent } from './pizza-display.component';
 
 describe('PizzaDisplayComponent', () => {
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [PizzaDisplayComponent],
-            imports: [RouterTestingModule],
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [PizzaDisplayComponent],
+                imports: [RouterTestingModule],
+            }).compileComponents();
+        })
+    );
 
     it('should create', () => {
         const fixture = TestBed.createComponent(PizzaDisplayComponent);

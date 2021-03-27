@@ -8,13 +8,15 @@ describe('LoginComponent', () => {
     let component: LoginComponent;
     let fixture: ComponentFixture<LoginComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [LoginComponent],
-            imports: [RouterTestingModule],
-            providers: [{ provide: FirebaseAuthService, useValue: {} }],
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [LoginComponent],
+                imports: [RouterTestingModule],
+                providers: [{ provide: FirebaseAuthService, useValue: {} }],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(LoginComponent);

@@ -9,21 +9,23 @@ import { PizzaItemComponent } from '../../components/pizza-item/pizza-item.compo
 import { ProductsComponent } from './products.component';
 
 describe('ProductsComponent', () => {
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [PizzaDisplayComponent, PizzaItemComponent, ProductsComponent],
-            imports: [ObjectValuePipeModule, RouterTestingModule],
-            providers: [
-                {
-                    provide: ProductsFacade,
-                    useValue: {
-                        allPizzas$: of({}),
-                        loadPizzas() {},
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [PizzaDisplayComponent, PizzaItemComponent, ProductsComponent],
+                imports: [ObjectValuePipeModule, RouterTestingModule],
+                providers: [
+                    {
+                        provide: ProductsFacade,
+                        useValue: {
+                            allPizzas$: of({}),
+                            loadPizzas() {},
+                        },
                     },
-                },
-            ],
-        }).compileComponents();
-    }));
+                ],
+            }).compileComponents();
+        })
+    );
 
     it('should create', () => {
         const fixture = TestBed.createComponent(ProductsComponent);

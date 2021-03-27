@@ -11,32 +11,34 @@ import { PizzaToppingsComponent } from '../../components/pizza-toppings/pizza-to
 import { ProductItemComponent } from './product-item.component';
 
 describe('ProductItemComponent', () => {
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [
-                PizzaDisplayComponent,
-                PizzaFormComponent,
-                PizzaToppingsComponent,
-                ProductItemComponent,
-            ],
-            imports: [ObjectValuePipeModule, ReactiveFormsModule, RouterTestingModule],
-            providers: [
-                {
-                    provide: ProductsFacade,
-                    useValue: {
-                        allToppings$: of({}),
-                        selectedPizza$: of(),
-                        visualise$: of(),
-                        createPizza() {},
-                        removePizza() {},
-                        selectPizza() {},
-                        selectToppings() {},
-                        updatePizza() {},
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [
+                    PizzaDisplayComponent,
+                    PizzaFormComponent,
+                    PizzaToppingsComponent,
+                    ProductItemComponent,
+                ],
+                imports: [ObjectValuePipeModule, ReactiveFormsModule, RouterTestingModule],
+                providers: [
+                    {
+                        provide: ProductsFacade,
+                        useValue: {
+                            allToppings$: of({}),
+                            selectedPizza$: of(),
+                            visualise$: of(),
+                            createPizza() {},
+                            removePizza() {},
+                            selectPizza() {},
+                            selectToppings() {},
+                            updatePizza() {},
+                        },
                     },
-                },
-            ],
-        }).compileComponents();
-    }));
+                ],
+            }).compileComponents();
+        })
+    );
 
     it('should create', () => {
         const fixture = TestBed.createComponent(ProductItemComponent);

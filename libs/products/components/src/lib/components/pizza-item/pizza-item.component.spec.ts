@@ -5,12 +5,14 @@ import { PizzaDisplayComponent } from '../pizza-display/pizza-display.component'
 import { PizzaItemComponent } from './pizza-item.component';
 
 describe('PizzaItemComponent', () => {
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [PizzaDisplayComponent, PizzaItemComponent],
-            imports: [RouterTestingModule],
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [PizzaDisplayComponent, PizzaItemComponent],
+                imports: [RouterTestingModule],
+            }).compileComponents();
+        })
+    );
 
     it('should create', () => {
         const fixture = TestBed.createComponent(PizzaItemComponent);

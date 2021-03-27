@@ -7,12 +7,14 @@ describe('ProductsWrapperComponent', () => {
     let component: ProductsWrapperComponent;
     let fixture: ComponentFixture<ProductsWrapperComponent>;
 
-    beforeEach(waitForAsync(() => {
-        TestBed.configureTestingModule({
-            declarations: [ProductsWrapperComponent],
-            imports: [RouterTestingModule],
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ProductsWrapperComponent],
+                imports: [RouterTestingModule],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ProductsWrapperComponent);
