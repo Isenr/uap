@@ -3,7 +3,7 @@ jobs:
     build:
         working_directory: ~/project
         docker:
-            - image: circleci/node:10-browsers-legacy
+            - image: cimg/node:14.16.0-browsers
         steps:
             - checkout
             - run:
@@ -47,7 +47,7 @@ jobs:
                     - .firebaserc
     deploy:
         docker:
-            - image: circleci/node:10-browsers-legacy
+            - image: cimg/node:14.16.0-browsers
         working_directory: ~/project
         steps:
             - run:
