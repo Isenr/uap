@@ -11,7 +11,7 @@ describe('FirestoreService', () => {
     );
 
     it('should be created', () => {
-        const service: FirestoreService<{ id: string }> = TestBed.get(FirestoreService);
+        const service: FirestoreService<{ id: string }> = TestBed.inject(FirestoreService);
         expect(service).toBeTruthy();
     });
 });

@@ -99,7 +99,7 @@ describe('Topping Effects', () => {
             ],
         });
 
-        effects = TestBed.get(ToppingEffects);
+        effects = TestBed.inject(ToppingEffects);
     });
 
     describe('loadToppings$', () => {

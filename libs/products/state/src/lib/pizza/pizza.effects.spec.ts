@@ -135,7 +135,7 @@ describe('Pizza Effects', () => {
             ],
         });
 
-        effects = TestBed.get(PizzaEffects);
+        effects = TestBed.inject(PizzaEffects);
     });
 
     describe('loadPizzas$', () => {
