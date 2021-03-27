@@ -16,7 +16,8 @@
                         "main": "libs/auth/src/test.ts",
                         "tsConfig": "libs/auth/tsconfig.spec.json",
                         "karmaConfig": "libs/auth/karma.conf.ts"
-                    }
+                    },
+                    "outputs": ["coverage/libs/auth"]
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
@@ -44,7 +45,8 @@
                         "main": "libs/backend/src/test.ts",
                         "tsConfig": "libs/backend/tsconfig.spec.json",
                         "karmaConfig": "libs/backend/karma.conf.ts"
-                    }
+                    },
+                    "outputs": ["coverage/libs/backend"]
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
@@ -75,7 +77,8 @@
                         "main": "libs/products/components/src/test.ts",
                         "karmaConfig": "libs/products/components/karma.conf.ts",
                         "tsConfig": "libs/products/components/tsconfig.spec.json"
-                    }
+                    },
+                    "outputs": ["coverage/libs/products/components"]
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
@@ -101,7 +104,8 @@
                         "main": "libs/products/models/src/test.ts",
                         "karmaConfig": "libs/products/models/karma.conf.ts",
                         "tsConfig": "libs/products/models/tsconfig.spec.json"
-                    }
+                    },
+                    "outputs": ["coverage/libs/products/models"]
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
@@ -127,7 +131,8 @@
                         "main": "libs/products/state/src/test.ts",
                         "tsConfig": "libs/products/state/tsconfig.spec.json",
                         "karmaConfig": "libs/products/state/karma.conf.ts"
-                    }
+                    },
+                    "outputs": ["coverage/libs/products/state"]
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
@@ -198,7 +203,8 @@
                             ],
                             "serviceWorker": true
                         }
-                    }
+                    },
+                    "outputs": ["{options.outputPath}"]
                 },
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
@@ -231,7 +237,8 @@
                         ],
                         "styles": ["apps/root-core/src/styles.scss"],
                         "scripts": []
-                    }
+                    },
+                    "outputs": ["coverage/apps/root-core/"]
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
@@ -283,7 +290,8 @@
                         "main": "libs/state/src/test.ts",
                         "karmaConfig": "libs/state/karma.conf.ts",
                         "tsConfig": "libs/state/tsconfig.spec.json"
-                    }
+                    },
+                    "outputs": ["coverage/libs/state"]
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",
@@ -309,7 +317,8 @@
                         "main": "libs/utils/src/test.ts",
                         "karmaConfig": "libs/utils/karma.conf.ts",
                         "tsConfig": "libs/utils/tsconfig.spec.json"
-                    }
+                    },
+                    "outputs": ["coverage/libs/utils"]
                 },
                 "lint": {
                     "builder": "@angular-devkit/build-angular:tslint",

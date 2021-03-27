@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect } from '@ngrx/effects';
+import { Actions, createEffect } from '@ngrx/effects';
 import { DataPersistence } from '@nrwl/angular';
 import { BackEndCollection, FirestoreService } from '@uap/backend';
 import { ProductPartialState, Topping } from '@uap/products/models';
@@ -18,10 +18,8 @@ import {
 export class ToppingEffects {
     private readonly collection: BackEndCollection<Topping>;
 
-    @Effect()
-    public loadToppings$: Observable<ToppingsLoadSuccess> = this.dataPersistence.fetch(
-        ToppingActionTypes.ToppingsLoad,
-        {
+    public loadToppings$: Observable<ToppingsLoadSuccess> = createEffect(() =>
+        this.dataPersistence.fetch(ToppingActionTypes.ToppingsLoad, {
             run: (action: ToppingsLoad, state: ProductPartialState) => {
                 const toppingState = state[PRODUCT_FEATURE_KEY].toppings;
                 if (toppingState.loaded) {
@@ -39,7 +37,7 @@ export class ToppingEffects {
                 console.error('Error', error);
                 return new ToppingsLoadError(error);
             },
-        }
+        })
     );
 
     constructor(
