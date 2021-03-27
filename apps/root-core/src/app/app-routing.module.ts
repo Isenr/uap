@@ -7,7 +7,8 @@ export const routes: Routes = [
     { component: LoginComponent, path: 'login', pathMatch: 'full' },
     {
         canActivate: [AuthGuard],
-        loadChildren: '@uap/products/components#ProductsComponentsModule',
+        loadChildren: () =>
+            import('@uap/products/components').then(m => m.ProductsComponentsModule),
         path: 'products',
     },
 ];
