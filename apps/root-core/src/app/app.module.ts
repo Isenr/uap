@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
-import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule, SETTINGS } from '@angular/fire/firestore';
 import { BrowserModule } from '@angular/platform-browser';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NxModule } from '@nrwl/angular';
@@ -11,7 +12,6 @@ import { stateImports } from '@uap/state';
 import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './containers/app/app.component';
-import { AngularFireAuthModule } from '@angular/fire/auth';
 
 @NgModule({
     bootstrap: [AppComponent],
@@ -44,13 +44,9 @@ import { AngularFireAuthModule } from '@angular/fire/auth';
         // #endregion nrwl imports
 
         // #region state management imports
-        ...stateImports(environment),
+        ...stateImports,
         // #endregion management imports
     ],
-    providers: [
-        FirestoreService,
-        FirebaseAuthService,
-        { provide: FirestoreSettingsToken, useValue: {} },
-    ],
+    providers: [FirestoreService, FirebaseAuthService, { provide: SETTINGS, useValue: {} }],
 })
 export class AppModule {}

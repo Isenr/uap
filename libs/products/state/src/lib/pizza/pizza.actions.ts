@@ -77,7 +77,7 @@ export class PizzasLoad implements Action {
 
 export class PizzasLoadError implements Action {
     public readonly type = PizzaActionTypes.PizzasLoadError;
-    constructor(public payload: any) {}
+    constructor(public payload: unknown) {}
 }
 
 export class PizzasLoadSuccess implements Action {

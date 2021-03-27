@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
-import { auth } from 'firebase/app';
+import firebase from 'firebase';
 
 import { AuthProvider } from '../../models/auth-provider.model';
 
-const { GithubAuthProvider } = auth;
+const {
+    auth: { GithubAuthProvider },
+} = firebase;
 
 @Injectable({
     providedIn: 'root',
@@ -15,7 +17,7 @@ export class FirebaseAuthService extends AuthProvider {
     constructor(private afAuth: AngularFireAuth, private router: Router) {
         super();
 
-        afAuth.auth.onAuthStateChanged(user => {
+        afAuth.onAuthStateChanged(user => {
             this.user = user;
 
             if (user) {
@@ -35,8 +37,8 @@ export class FirebaseAuthService extends AuthProvider {
     // #endregion instance fields
 
     // #region private methods
-    private async oAuthSignIn(provider: auth.AuthProvider) {
-        return await this.afAuth.auth.signInWithPopup(provider);
+    private async oAuthSignIn(provider: firebase.auth.AuthProvider) {
+        return await this.afAuth.signInWithPopup(provider);
     }
     // #endregion private methods
 
@@ -60,7 +62,7 @@ export class FirebaseAuthService extends AuthProvider {
     }
 
     public signOut() {
-        this.afAuth.auth.signOut();
+        this.afAuth.signOut();
     }
     // #endregion AuthProvider method implementations
 }

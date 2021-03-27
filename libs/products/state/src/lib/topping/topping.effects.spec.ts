@@ -15,7 +15,7 @@ import { ToppingsLoad, ToppingsLoadSuccess } from './topping.actions';
 import { ToppingEffects } from './topping.effects';
 
 describe('Topping Effects', () => {
-    let actions: Observable<any>;
+    let actions: Observable<unknown>;
     let effects: ToppingEffects;
 
     beforeEach(() => {
@@ -37,11 +37,11 @@ describe('Topping Effects', () => {
                 {
                     provide: FirestoreService,
                     useValue: {
-                        collection: () => ({
-                            create() {},
-                            createId: () => '1',
-                            delete() {},
-                            get: () =>
+                        collection: jest.fn(() => ({
+                            create: jest.fn(),
+                            createId: jest.fn(() => '1'),
+                            delete: jest.fn(),
+                            get: jest.fn(() =>
                                 of([
                                     {
                                         id: '1',
@@ -91,9 +91,9 @@ describe('Topping Effects', () => {
                                         id: '12',
                                         name: 'tomato',
                                     },
-                                ]),
-                            update() {},
-                        }),
+                                ])),
+                            update: jest.fn(),
+                        })),
                     },
                 },
             ],

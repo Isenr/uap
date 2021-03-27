@@ -14,7 +14,7 @@ export class ToppingsLoad implements Action {
 
 export class ToppingsLoadError implements Action {
     public readonly type = ToppingActionTypes.ToppingsLoadError;
-    constructor(public payload: any) {}
+    constructor(public payload: unknown) {}
 }
 
 export class ToppingsLoadSuccess implements Action {

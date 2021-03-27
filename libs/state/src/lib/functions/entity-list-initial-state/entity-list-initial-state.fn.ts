@@ -4,8 +4,8 @@ import { EntityListState } from '../../models/entity-list-state/entity-list-stat
 
 export const entityListInitialState = <T>(adapter: EntityAdapter<T>): EntityListState<T> =>
     adapter.getInitialState({
-        error: undefined,
+        error: undefined as unknown,
         loaded: false,
-        selectedId: undefined,
-        selectedIds: [],
+        selectedId: undefined as string,
+        selectedIds: [] as string[],
     });

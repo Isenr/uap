@@ -24,7 +24,7 @@ export const DROP_ANIMATION = trigger('drop', [
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'uap-pizza-display',
     styleUrls: ['pizza-display.component.scss'],
-    templateUrl: `pizza-display.component.html`,
+    templateUrl: 'pizza-display.component.html',
 })
 export class PizzaDisplayComponent {
     @Input()

@@ -5,7 +5,6 @@ import { Topping } from '@uap/products/models';
 const PIZZA_TOPPINGS_ACCESSOR = {
     multi: true,
     provide: NG_VALUE_ACCESSOR,
-    // tslint:disable-next-line:no-forward-ref
     useExisting: forwardRef(() => PizzaToppingsComponent),
 };
 
@@ -22,14 +21,14 @@ export class PizzaToppingsComponent implements ControlValueAccessor {
 
     public value: Topping[] = [];
 
-    private onTouch: <T = any, U = any>(...args: U[]) => T;
-    private onModelChange: <T = any, U = any>(...args: U[]) => T;
+    private onTouch: <T = unknown, U = unknown>(...args: U[]) => T;
+    private onModelChange: <T = unknown, U = unknown>(...args: U[]) => T;
 
-    public registerOnChange(fn: <T = any, U = any>(...args: U[]) => T) {
+    public registerOnChange(fn: <T = unknown, U = unknown>(...args: U[]) => T) {
         this.onModelChange = fn;
     }
 
-    public registerOnTouched(fn: <T = any, U = any>(...args: U[]) => T) {
+    public registerOnTouched(fn: <T = unknown, U = unknown>(...args: U[]) => T) {
         this.onTouch = fn;
     }
 

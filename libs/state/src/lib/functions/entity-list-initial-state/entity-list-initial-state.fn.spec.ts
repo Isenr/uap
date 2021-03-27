@@ -1,16 +1,20 @@
+import { EntityAdapter, EntityState } from '@ngrx/entity';
+
 import { entityListInitialState } from './entity-list-initial-state.fn';
 
 describe('entityListInitialState', () => {
     it('should return an object with the expected initial properties', () => {
         const result = entityListInitialState({
-            getInitialState(state: object) {
+            getInitialState<S extends Record<string, unknown>>(
+                state?: S
+            ): EntityState<unknown> & S {
                 return {
                     entities: {},
                     ids: [],
                     ...state,
                 };
             },
-        } as any);
+        } as EntityAdapter<unknown>);
 
         expect(Reflect.has(result, 'entities')).toBeTruthy();
         expect(Reflect.has(result, 'ids')).toBeTruthy();

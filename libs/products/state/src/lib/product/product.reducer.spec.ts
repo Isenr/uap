@@ -1,3 +1,4 @@
+import { Action } from '@ngrx/store';
 import { Pizza, PizzaState, Topping, ToppingState } from '@uap/products/models';
 
 import { pizzaInitialState } from '../pizza/pizza-initial.state';
@@ -33,7 +34,7 @@ describe('Product Reducer', () => {
         });
 
         it('should return set the list of known Toppings', () => {
-            const toppings = [createEntity(idA), createEntity(idZ)];
+            const toppings = [createEntity(idA), createEntity(idZ)] as Topping[];
             const action = new ToppingsLoadSuccess({ toppings });
             const result: ToppingState = productReducers.toppings(toppingInitialState, action);
             const selId: string = getEntityId(result.entities[idZ]);
@@ -47,14 +48,14 @@ describe('Product Reducer', () => {
 
     describe('unknown action', () => {
         it('should return the initial pizza state', () => {
-            const action = {} as any;
+            const action = {} as Action;
             const result = productReducers.pizzas(pizzaInitialState, action);
 
             expect(result).toBe(pizzaInitialState);
         });
 
         it('should return the initial topping state', () => {
-            const action = {} as any;
+            const action = {} as Action;
             const result = productReducers.toppings(toppingInitialState, action);
 
             expect(result).toBe(toppingInitialState);

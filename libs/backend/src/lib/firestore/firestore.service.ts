@@ -33,7 +33,7 @@ export class FirestoreService<T extends { id?: string }> extends Backend<T> {
                         id,
                     }))
                 ),
-                catchError((error: any) => throwError(error))
+                catchError((error: unknown) => throwError(error))
             );
     }
 

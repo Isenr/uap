@@ -1,42 +1,31 @@
 {
-    "npmScope": "uap",
     "implicitDependencies": {
+        ".eslintrc.json": "*",
         "angular.json": "*",
-        "package.json": "*",
-        "tslint.json": "*",
-        "nx.json": "*",
-        "tsconfig.base.json": "*"
+        "package.json": { "dependencies": "*", "devDependencies": "*" },
+        "tsconfig.base.json": "*",
+        "nx.json": "*"
     },
-    "projects": {
-        "auth": {
-            "tags": []
-        },
-        "backend": {
-            "tags": []
-        },
-        "products-components": {
-            "tags": []
-        },
-        "products-models": {
-            "tags": []
-        },
-        "products-state": {
-            "tags": []
-        },
-        "root-core": {
-            "tags": []
-        },
-        "root-core-e2e": {
-            "tags": []
-        },
-        "state": {
-            "tags": []
-        },
-        "utils": {
-            "tags": []
+    "affected": { "defaultBase": "master" },
+    "npmScope": "uap",
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/workspace/tasks-runners/default",
+            "options": {
+                "cacheableOperations": ["build", "lint", "test", "e2e", "build-storybook"]
+            }
         }
     },
-    "affected": {
-        "defaultBase": "master"
+    "projects": {
+        "auth": { "tags": [] },
+        "backend": { "tags": [] },
+        "products-components": { "tags": [] },
+        "products-models": { "tags": [] },
+        "products-state": { "tags": [] },
+        "root-core": { "tags": [] },
+        "root-core-e2e": { "tags": [], "implicitDependencies": ["root-core"] },
+        "state": { "tags": [] },
+        "utils": { "tags": [] },
+        "products-components-e2e": { "tags": [], "implicitDependencies": ["products-components"] }
     }
 }

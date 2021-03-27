@@ -7,7 +7,7 @@ export enum RouterActionTypes {
 
 export class RouterNavigate implements Action {
     public readonly type = RouterActionTypes.RouterNavigate;
-    constructor(public payload: { commands: any[]; extras?: NavigationExtras }) {}
+    constructor(public payload: { commands: unknown[]; extras?: NavigationExtras }) {}
 }
 
 export type RouterActionsUnion = RouterNavigate;

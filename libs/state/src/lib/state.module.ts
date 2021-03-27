@@ -7,7 +7,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { metaReducers, rootReducers } from './reducers';
 import { CustomSerializer, RouterEffects } from './router';
 
-const commonImports = [
+export const stateImports = [
     // #region ngrx imports
     /**
      * EffectsModule.forRoot() is imported once in the root module and
@@ -24,11 +24,6 @@ const commonImports = [
     StoreRouterConnectingModule.forRoot({
         serializer: CustomSerializer,
     }),
-    // #endregion ngrx imports
-];
-
-const devImports = [
-    ...commonImports,
 
     /**
      * StoreModule.forRoot is imported once in the root module, accepting a reducer
@@ -38,7 +33,7 @@ const devImports = [
      * based application.
      */
     StoreModule.forRoot(rootReducers, {
-        metaReducers: metaReducers({ production: false }),
+        metaReducers: metaReducers({ production: true }),
         runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true },
     }),
 
@@ -53,27 +48,8 @@ const devImports = [
      * See: https://github.com/zalmoxisus/redux-devtools-extension
      */
     StoreDevtoolsModule.instrument(),
+    // #endregion ngrx imports
 ];
-
-const prodImports = [
-    ...commonImports,
-
-    /**
-     * StoreModule.forRoot is imported once in the root module, accepting a reducer
-     * function or object map of reducer functions. If passed an object of
-     * reducers, combineReducers will be run creating your application
-     * meta-reducer. This returns all providers for an @ngrx/store
-     * based application.
-     */
-    StoreModule.forRoot(rootReducers, {
-        metaReducers: metaReducers({ production: true }),
-        runtimeChecks: { strictStateImmutability: true, strictActionImmutability: true },
-    }),
-];
-
-export function stateImports({ production }: { production: boolean }) {
-    return production ? prodImports : devImports;
-}
 
 @NgModule()
 export class StateModule {}

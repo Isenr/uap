@@ -6,5 +6,5 @@ export interface EntityListState<T extends Entity = Entity> extends EntityState<
     selectedId?: string; // which Entity record has been selected
     selectedIds?: string[];
     loaded: boolean; // has the Entities list been loaded
-    error?: any; // last none error (if any)
+    error?: unknown; // last none error (if any)
 }

@@ -6,5 +6,5 @@ import { Entity } from '@uap/state';
  *  - productsComponentsReducer
  */
 export interface Topping extends Entity {
-    [key: string]: any;
+    [key: string]: unknown;
 }

@@ -26,6 +26,6 @@ describe('getNonSymbolKeys', () => {
     it('should convert the array to a dictionary', () => {
         const result = getNonSymbolKeys(dictionary);
 
-        expect(result.some((key: any) => key === idC)).toBeFalsy();
+        expect(result.some((key: unknown) => key === idC)).toBeFalsy();
     });
 });

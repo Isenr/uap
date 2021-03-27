@@ -31,7 +31,7 @@ export class PizzaEffects {
 
     public loadPizzas$: Observable<PizzasLoadSuccess> = createEffect(() =>
         this.dataPersistence.fetch(PizzaActionTypes.PizzasLoad, {
-            run: (action: PizzasLoad, state: ProductPartialState) => {
+            run: (_action: PizzasLoad, state: ProductPartialState) => {
                 const pizzaState = state[PRODUCT_FEATURE_KEY].pizzas;
                 if (pizzaState.loaded) {
                     const ids: (string | number)[] = pizzaState.ids;
@@ -42,7 +42,7 @@ export class PizzaEffects {
                 return this.collection.get().pipe(map(pizzas => new PizzasLoadSuccess({ pizzas })));
             },
 
-            onError: (action: PizzasLoad, error) => {
+            onError: (_action: PizzasLoad, error) => {
                 console.error('PizzasLoadError', error);
                 return new PizzasLoadError(error);
             },
@@ -52,13 +52,13 @@ export class PizzaEffects {
     public removePizza$ = createEffect(() =>
         this.dataPersistence.optimisticUpdate<PizzaRemove>(PizzaActionTypes.PizzaRemove, {
             // provides an action and the current state of the store
-            run: (a, state) => {
+            run: (a, _state) => {
                 const id = a.payload.id;
                 this.collection.delete({ id });
                 return new PizzaRemoveSuccess({ id });
             },
 
-            undoAction: (action: PizzaRemove, error) => {
+            undoAction: (_action: PizzaRemove, error) => {
                 console.error('PizzaRemoveError', error);
                 return new PizzaRemoveError(error);
             },
@@ -68,7 +68,7 @@ export class PizzaEffects {
     public createPizza$ = createEffect(() =>
         this.dataPersistence.optimisticUpdate<PizzaCreate>(PizzaActionTypes.PizzaCreate, {
             // provides an action and the current state of the store
-            run: ({ payload }, state) => {
+            run: ({ payload }, _state) => {
                 const pizza: Pizza = {
                     ...payload.pizza,
                     id: this.collection.createId(),
@@ -77,7 +77,7 @@ export class PizzaEffects {
                 return new PizzaCreateSuccess({ pizza });
             },
 
-            undoAction: (action: PizzaCreate, error) => {
+            undoAction: (_action: PizzaCreate, error) => {
                 console.error('PizzaCreateError', error);
                 return new PizzaCreateError(error);
             },

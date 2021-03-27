@@ -1,7 +1,7 @@
 import { Pizza, PizzaState } from '@uap/products/models';
 
-import { PizzasLoadSuccess } from './pizza.actions';
 import { pizzaInitialState } from './pizza-initial.state';
+import { PizzaActionsUnion, PizzasLoadSuccess } from './pizza.actions';
 import { pizzaReducer } from './pizza.reducer';
 
 describe('Pizza Reducer', () => {
@@ -32,7 +32,7 @@ describe('Pizza Reducer', () => {
 
     describe('unknown action', () => {
         it('should return the initial state', () => {
-            const action = {} as any;
+            const action = {} as PizzaActionsUnion;
             const result = pizzaReducer(pizzaInitialState, action);
 
             expect(result).toBe(pizzaInitialState);

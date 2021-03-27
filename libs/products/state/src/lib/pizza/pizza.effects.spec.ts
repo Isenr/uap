@@ -16,7 +16,7 @@ import { PizzasLoad, PizzasLoadSuccess } from './pizza.actions';
 import { PizzaEffects } from './pizza.effects';
 
 describe('Pizza Effects', () => {
-    let actions: Observable<any>;
+    let actions: Observable<unknown>;
     let effects: PizzaEffects;
 
     beforeEach(() => {
@@ -39,11 +39,11 @@ describe('Pizza Effects', () => {
                 {
                     provide: FirestoreService,
                     useValue: {
-                        collection: () => ({
-                            create() {},
-                            createId: () => '1',
-                            delete() {},
-                            get: () =>
+                        collection: jest.fn(() => ({
+                            create: jest.fn(),
+                            createId: jest.fn(() => '1'),
+                            delete: jest.fn(),
+                            get: jest.fn(() =>
                                 of([
                                     {
                                         id: '1',
@@ -127,9 +127,9 @@ describe('Pizza Effects', () => {
                                             },
                                         ],
                                     },
-                                ]),
-                            update() {},
-                        }),
+                                ])),
+                            update: jest.fn(),
+                        })),
                     },
                 },
             ],

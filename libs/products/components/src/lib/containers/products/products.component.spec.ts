@@ -19,7 +19,7 @@ describe('ProductsComponent', () => {
                         provide: ProductsFacade,
                         useValue: {
                             allPizzas$: of({}),
-                            loadPizzas() {},
+                            loadPizzas: jest.fn(),
                         },
                     },
                 ],

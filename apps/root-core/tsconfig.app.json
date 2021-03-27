@@ -1,9 +1,8 @@
 {
-    "extends": "../../tsconfig.base.json",
+    "extends": "./tsconfig.json",
     "compilerOptions": {
         "outDir": "../../dist/out-tsc",
         "types": []
     },
-    "exclude": ["test.ts", "**/*.spec.ts"],
-    "include": ["**/*.ts", "../../libs/products/components/src/index.ts"]
+    "files": ["src/main.ts", "src/polyfills.ts"]
 }

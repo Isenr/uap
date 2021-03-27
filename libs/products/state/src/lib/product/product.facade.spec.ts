@@ -47,11 +47,11 @@ describe('Product Facade', () => {
                     {
                         provide: FirestoreService,
                         useValue: {
-                            collection: (collectionName: string) => ({
-                                create() {},
-                                createId: () => '1',
-                                delete() {},
-                                get: () =>
+                            collection: jest.fn((collectionName: string) => ({
+                                create: jest.fn(),
+                                createId: jest.fn(() => '1'),
+                                delete: jest.fn(),
+                                get: jest.fn(() =>
                                     of(
                                         collectionName === 'toppings'
                                             ? [
@@ -188,9 +188,9 @@ describe('Product Facade', () => {
                                                       ],
                                                   },
                                               ]
-                                    ),
-                                update() {},
-                            }),
+                                    )),
+                                update: jest.fn(),
+                            })),
                         },
                     },
                 ],

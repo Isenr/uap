@@ -12,9 +12,7 @@ describe('FirebaseAuthService', () => {
                 {
                     provide: AngularFireAuth,
                     useValue: {
-                        auth: {
-                            onAuthStateChanged: () => null,
-                        },
+                        onAuthStateChanged: () => null,
                     },
                 },
             ],

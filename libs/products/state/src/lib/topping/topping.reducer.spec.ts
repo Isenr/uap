@@ -1,7 +1,7 @@
 import { Topping, ToppingState } from '@uap/products/models';
 
 import { toppingInitialState } from './topping-initial.state';
-import { ToppingsLoadSuccess } from './topping.actions';
+import { ToppingActionsUnion, ToppingsLoadSuccess } from './topping.actions';
 import { toppingReducer } from './topping.reducer';
 
 describe('Topping Reducer', () => {
@@ -32,7 +32,7 @@ describe('Topping Reducer', () => {
 
     describe('unknown action', () => {
         it('should return the initial state', () => {
-            const action = {} as any;
+            const action = {} as ToppingActionsUnion;
             const result = toppingReducer(toppingInitialState, action);
 
             expect(result).toBe(toppingInitialState);

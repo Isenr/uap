@@ -8,7 +8,6 @@ import { productQuery } from './product.selectors';
 describe('Product Selectors', () => {
     const ERROR_MSG = 'No Error Available';
 
-    const getEntityId = (it: Pizza | Topping) => it.id;
     const createEntity = (id: string, name = ''): Pizza | Topping => ({
         id,
         name: name || `name-${id}`,
