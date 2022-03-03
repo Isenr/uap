@@ -23,9 +23,6 @@ jobs:
                 paths:
                     - node_modules
             - run:
-                name: Insert Firebase environment file
-                command: echo $FIREBASE_ENVIRONMENT_FILE | base64 --decode > apps/root-core/src/environments/environment.prod.ts
-            - run:
                 name: Linting
                 command: yarn affected:lint
             - run:
@@ -37,42 +34,9 @@ jobs:
             - run:
                 name: Building
                 command: yarn build:prod
-            - save_cache:
-                key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-                paths:
-                    - dist
-                    - package.json
-                    - yarn.lock
-                    - firebase.json
-                    - .firebaserc
-    deploy:
-        docker:
-            - image: cimg/node:14.16.0-browsers
-        working_directory: ~/project
-        steps:
-            - run:
-                name: Show current branch
-                command: echo ${CIRCLE_BRANCH}
-            - restore_cache:
-                key: v1-dist-{{ .Environment.CIRCLE_BRANCH }}-{{ .Environment.CIRCLE_SHA1 }}
-            - run:
-                name: Remove postinstall
-                command: sed -i 's/node .\/decorate-angular-cli.js && ngcc --properties es2015 browser module main//' package.json
-            - run:
-                name: Install Firebase
-                command: yarn add firebase-tools --dev
-            - run:
-                name: Deploy master to Firebase
-                command: yarn firebase deploy --token=$FIREBASE_DEPLOY_TOKEN
 
 workflows:
     version: 2
     -deploy:
         jobs:
         - build
-        - deploy:
-            requires:
-                - build
-            filters:
-                branches:
-                    only: master
